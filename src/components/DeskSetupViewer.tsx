@@ -3,16 +3,13 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 
 type Props = {
-  /** Public URL of your GLB (e.g. "/models/gaming_setup_low-poly.glb") */
   src: string;
-  /** Fill parent size (default: 100% x 100%) */
   style?: React.CSSProperties;
-  /** Start with a gentle spin */
   autoRotate?: boolean;
-  /** Show grid/axes for debugging */
   helpers?: boolean;
 };
 
@@ -29,7 +26,7 @@ export default function DeskSetupViewer({
     if (!container) return;
 
     // Renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -41,7 +38,7 @@ export default function DeskSetupViewer({
 
     // Scene
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf3f3f3);
+    scene.background = null;
 
     // Camera
     const camera = new THREE.PerspectiveCamera(
@@ -59,11 +56,11 @@ export default function DeskSetupViewer({
     controls.autoRotate = autoRotate;
     controls.autoRotateSpeed = 0.5;
 
-    // Environment (image-based lighting)
+    // Environment (IBL)
     const pmrem = new THREE.PMREMGenerator(renderer);
     scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
-    // Key light (adds soft shadow + spec)
+    // Lights
     const dir = new THREE.DirectionalLight(0xffffff, 2.0);
     dir.position.set(5, 10, 5);
     dir.castShadow = true;
@@ -80,16 +77,16 @@ export default function DeskSetupViewer({
       scene.add(grid, axes);
     }
 
-    // Simple ground to catch shadows (optional)
+    // Soft ground
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(50, 50),
-      new THREE.ShadowMaterial({ opacity: 0.15 })
+      new THREE.ShadowMaterial({ opacity: 0.05 })
     );
     ground.rotation.x = -Math.PI / 2;
     ground.receiveShadow = true;
     scene.add(ground);
 
-    // Frame camera to object utility
+    // Frame camera utility
     const frameObject = (obj: THREE.Object3D) => {
       const box = new THREE.Box3().setFromObject(obj);
       const size = new THREE.Vector3();
@@ -110,30 +107,34 @@ export default function DeskSetupViewer({
       camera.far = dist * 100;
       camera.lookAt(center);
       camera.updateProjectionMatrix();
-
       controls.target.copy(center);
       controls.update();
     };
 
-    // Load GLB
+    // GLTF + DRACO loader
     const loader = new GLTFLoader();
+
+    // Option 1: use Google's hosted decoder (easiest)
+    const draco = new DRACOLoader();
+    draco.setDecoderPath(
+      "https://www.gstatic.com/draco/versioned/decoders/1.5.6/"
+    );
+    // Option 2 (local): put decoder files in /public/draco/ and use:
+    // draco.setDecoderPath("/draco/");
+    loader.setDRACOLoader(draco);
+
     let modelRoot: THREE.Object3D | null = null;
 
     loader.load(
-      src,
+      src, // e.g. "/models/setup-draco.glb"
       (gltf) => {
         modelRoot = gltf.scene;
 
-        // Make meshes shadow-aware and ensure standard material settings
         modelRoot.traverse((obj) => {
           const mesh = obj as THREE.Mesh;
           if (mesh.isMesh) {
             mesh.castShadow = true;
             mesh.receiveShadow = true;
-            const mat = mesh.material;
-            if (Array.isArray(mat))
-              mat.forEach((m) => ((m as THREE.Material).needsUpdate = true));
-            else if (mat) mat.needsUpdate = true;
           }
         });
 
@@ -146,9 +147,8 @@ export default function DeskSetupViewer({
       }
     );
 
-    // Resize handler
+    // Resize
     const onResize = () => {
-      if (!container) return;
       const { clientWidth, clientHeight } = container;
       renderer.setSize(clientWidth, clientHeight);
       camera.aspect = clientWidth / clientHeight;
@@ -156,7 +156,7 @@ export default function DeskSetupViewer({
     };
     window.addEventListener("resize", onResize);
 
-    // Render loop
+    // Loop
     let raf = 0;
     const loop = () => {
       raf = requestAnimationFrame(loop);
@@ -172,7 +172,7 @@ export default function DeskSetupViewer({
       controls.dispose();
       renderer.dispose();
       pmrem.dispose();
-      if (modelRoot) modelRoot.traverse(() => {}); // no-op; kept for symmetry
+      draco.dispose();
       if (grid) scene.remove(grid);
       if (axes) scene.remove(axes);
       const canvas = renderer.domElement;
