@@ -1,15 +1,18 @@
 // App.tsx
-import DeskSetupViewer from "./components/DeskSetupViewer";
 import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import Hero from "./components/Hero";
+import About from "./components/About";
 
 export default function App() {
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
-      <DeskSetupViewer
-        src="/models/setup-draco.glb"
-        autoRotate
-        helpers={false}
-      />
-    </div>
+    <BrowserRouter>
+      <div className="relative z-0">
+        <div className="bg-[url('/herobg.jpg')] bg-cover bg-no-repeat bg-center min-h-screen">
+          <Hero />
+        </div>
+      </div>
+      <About />
+    </BrowserRouter>
   );
 }
