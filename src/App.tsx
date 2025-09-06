@@ -1,9 +1,10 @@
+// App.tsx
+import DeskSetupViewer from "./components/DeskSetupViewer";
 
-function App() {
-
+export default function App() {
   return (
-    <div>App</div>
-  )
+    <div style={{ width: "100vw", height: "100vh" }}>
+      <DeskSetupViewer src="/models/setup.glb" autoRotate helpers={false} />
+    </div>
+  );
 }
-
-export default App
