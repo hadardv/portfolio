@@ -1,16 +1,19 @@
 // DeskSetupViewer.tsx
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+// mouse controls (zoom, rotate)
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+// This loads the glb file format
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+// decompressed draco compressed meshes inside glb.
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 
 type Props = {
-  src: string;
-  style?: React.CSSProperties;
-  autoRotate?: boolean;
-  helpers?: boolean;
+  src: string; // path to my 3d model
+  style?: React.CSSProperties; // inline styles for the container
+  autoRotate?: boolean; // spins the camera automatically
+  helpers?: boolean; //toggle grid/axes for debbuging
 };
 
 export default function DeskSetupViewer({
@@ -26,6 +29,8 @@ export default function DeskSetupViewer({
     if (!container) return;
 
     // Renderer
+    // Creates the GPU renderer, antialias true smooths jagged edges
+    // alpha true enables transparent background
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(container.clientWidth, container.clientHeight);
