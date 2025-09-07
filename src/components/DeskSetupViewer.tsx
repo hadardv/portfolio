@@ -101,7 +101,7 @@ export default function DeskSetupViewer({
 
       const maxDim = Math.max(size.x, size.y, size.z);
       const fov = (camera.fov * Math.PI) / 180;
-      const dist = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 1.5;
+      const dist = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 0.8;
 
       camera.position.set(
         center.x + dist,

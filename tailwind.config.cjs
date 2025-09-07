@@ -15,6 +15,10 @@ module.exports = {
       boxShadow: {
         card: "0px 35px 120px -15px #211e35",
       },
+      fontFamily: {
+        montserrat: ["Montserrat", "sans-serif"],
+      },
+
       screens: {
         xs: "450px",
       },

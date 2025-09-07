@@ -8,7 +8,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="relative z-0">
-        <div className="bg-[url('/herobg.jpg')] bg-cover bg-no-repeat bg-center min-h-screen">
+        <div className="bg-[url('/herobg4.jpg')] bg-cover bg-no-repeat bg-center min-h-screen">
           <Hero />
         </div>
       </div>

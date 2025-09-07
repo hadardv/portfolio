@@ -14,4 +14,9 @@ const styles: { [key: string]: string } = {
     "sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider",
 };
 
+export const fonts = {
+  heading: "'Poppins', sans-serif",
+  body: "'Poppins', sans-serif",
+};
+
 export default styles;
