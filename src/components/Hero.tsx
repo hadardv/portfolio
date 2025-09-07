@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className="flex flex-row justify-center items-center h-screen w-full px-16">
       <motion.div
-        className="flex flex-col w-1/2 text-center max-w-2xl"
+        className="flex flex-col w-1/2 text-left max-w-2xl"
         initial={{ opacity: 0, y: -60, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 1.0, ease: easeOut }}
@@ -17,9 +17,7 @@ export default function Hero() {
 
         <p className={`${styles.heroSubText} text-grey-300`}>
           Full Stack Developer <br className="sm:block hidden" />
-          Turning ideas into dynamic, user-friendly{" "}
-          <br className="sm:block hidden" />
-          digital experiences using cutting-edge tech.{" "}
+          Transforming ideas into seamless digital realities{" "}
         </p>
       </motion.div>
 
