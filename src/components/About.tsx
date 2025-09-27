@@ -67,7 +67,7 @@ export default function About() {
           <div className="flex justify-center">
             <div className="grid w-fit gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               <SkillsCard
-                name="Frontend Developer"
+                name="Frontend Technologies"
                 icon="/icons/frontend.png"
                 size={120}
                 sections={[
@@ -80,7 +80,7 @@ export default function About() {
                 ]}
               />
               <SkillsCard
-                name="React.js Developer"
+                name="Infrastructure"
                 icon="/icons/react.png"
                 size={120}
                 sections={[
@@ -89,7 +89,7 @@ export default function About() {
                 ]}
               />
               <SkillsCard
-                name="Backend Developer"
+                name="Backend Technologies"
                 icon="/icons/backend.png"
                 size={120}
                 sections={[
