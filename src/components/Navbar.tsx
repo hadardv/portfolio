@@ -9,6 +9,17 @@ export default function Navbar() {
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  function go(id: string, e: React.MouseEvent) {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (!el) return;
+    const navH = document.querySelector("nav")?.offsetHeight ?? 72;
+    const y = el.getBoundingClientRect().top + window.scrollY - navH + 50;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    setActive(id);
+    setToggle(false);
+  }
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 100);
     window.addEventListener("scroll", onScroll);
@@ -21,7 +32,6 @@ export default function Navbar() {
         scrolled ? "bg-primary/90" : "bg-white/15"
       } backdrop-blur`}
     >
-      {/* centered row with reliable padding */}
       <div className="container mx-auto max-w-[1280px] h-16 px-4 sm:px-8 flex items-center justify-between">
         <Link
           to="/"
@@ -42,11 +52,12 @@ export default function Navbar() {
             <li
               key={nav.id}
               className={`text-[18px] font-medium cursor-pointer ${
-                active === nav.title ? "text-white" : "text-white/80"
+                active === nav.id ? "text-white" : "text-white/80"
               } hover:text-white`}
-              onClick={() => setActive(nav.title)}
             >
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              <a href={`#${nav.id}`} onClick={(e) => go(nav.id, e)}>
+                {nav.title}
+              </a>
             </li>
           ))}
         </ul>
@@ -81,7 +92,9 @@ export default function Navbar() {
                 setActive(nav.title);
               }}
             >
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              <a href={`#${nav.id}`} onClick={(e) => go(nav.id, e)}>
+                {nav.title}
+              </a>
             </li>
           ))}
         </ul>

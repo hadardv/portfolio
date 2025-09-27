@@ -1,19 +1,25 @@
 // DeskSetupViewer.tsx
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-// mouse controls (zoom, rotate)
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-// This loads the glb file format
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-// decompressed draco compressed meshes inside glb.
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+import { SMAAPass } from "three/examples/jsm/postprocessing/SMAAPass.js";
 
 type Props = {
-  src: string; // path to my 3d model
-  style?: React.CSSProperties; // inline styles for the container
-  autoRotate?: boolean; // spins the camera automatically
-  helpers?: boolean; //toggle grid/axes for debbuging
+  src: string;
+  style?: React.CSSProperties;
+  autoRotate?: boolean;
+  helpers?: boolean;
+  /** "contain" shows all of the model, "cover" fills the screen (cropping allowed) */
+  fit?: "contain" | "cover";
+  /** disable OrbitControls for background usage */
+  interactive?: boolean;
+  /** extra mesh-name hints to hide (starfield/backdrop planes) */
+  hideByName?: string[];
 };
 
 export default function DeskSetupViewer({
@@ -21,6 +27,9 @@ export default function DeskSetupViewer({
   style,
   autoRotate = true,
   helpers = false,
+  fit = "cover",
+  interactive = false,
+  hideByName = ["background", "backdrop", "sky", "space", "plane"],
 }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,51 +38,56 @@ export default function DeskSetupViewer({
     if (!container) return;
 
     // Renderer
-    // Creates the GPU renderer, antialias true smooths jagged edges
-    // alpha true enables transparent background
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const DPR = Math.min(window.devicePixelRatio, 2.5);
+    renderer.setPixelRatio(DPR);
     renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setClearAlpha(0);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMappingExposure = 1.1;
+    renderer.shadowMap.enabled = false;
     container.appendChild(renderer.domElement);
 
     // Scene
     const scene = new THREE.Scene();
-    scene.background = null;
 
     // Camera
     const camera = new THREE.PerspectiveCamera(
-      45,
+      52,
       container.clientWidth / container.clientHeight,
-      0.1,
-      2000
+      0.05,
+      3000
     );
-    camera.position.set(2, 1.5, 3);
+    camera.position.set(2, 1.4, 2.6);
 
     // Controls
     const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enabled = interactive;
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.autoRotate = autoRotate;
-    controls.autoRotateSpeed = 0.5;
+    controls.autoRotateSpeed = 0.6;
+    controls.enableZoom = false;
+    controls.minDistance = 0.2;
+    controls.maxDistance = 8;
+    controls.maxPolarAngle = Math.PI * 0.48;
 
-    // Environment (IBL)
+    // Post
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    const smaa = new SMAAPass();
+    composer.addPass(smaa);
+
+    // Environment + light
     const pmrem = new THREE.PMREMGenerator(renderer);
-    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-
-    // Lights
-    const dir = new THREE.DirectionalLight(0xffffff, 2.0);
-    dir.position.set(5, 10, 5);
-    dir.castShadow = true;
-    dir.shadow.mapSize.set(2048, 2048);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.03).texture;
+    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+    const dir = new THREE.DirectionalLight(0xffffff, 0.5);
+    dir.position.set(5, 8, 6);
     scene.add(dir);
-    scene.add(new THREE.AmbientLight(0xffffff, 0.25));
 
-    // Optional helpers
+    // Helpers
     let grid: THREE.GridHelper | undefined;
     let axes: THREE.AxesHelper | undefined;
     if (helpers) {
@@ -82,30 +96,26 @@ export default function DeskSetupViewer({
       scene.add(grid, axes);
     }
 
-    // Soft ground
-    const ground = new THREE.Mesh(
-      new THREE.PlaneGeometry(50, 50),
-      new THREE.ShadowMaterial({ opacity: 0.05 })
-    );
-    ground.rotation.x = -Math.PI / 2;
-    ground.receiveShadow = true;
-    scene.add(ground);
-
-    // Frame camera utility
+    // Framing utils
     const frameObject = (obj: THREE.Object3D) => {
       const box = new THREE.Box3().setFromObject(obj);
-      const size = new THREE.Vector3();
-      const center = new THREE.Vector3();
-      box.getSize(size);
-      box.getCenter(center);
+      const size = box.getSize(new THREE.Vector3());
+      const center = box.getCenter(new THREE.Vector3());
 
-      const maxDim = Math.max(size.x, size.y, size.z);
-      const fov = (camera.fov * Math.PI) / 180;
-      const dist = Math.abs(maxDim / 2 / Math.tan(fov / 2)) * 0.8;
+      // distances to fit height/width (vertical FOV)
+      const vFov = (camera.fov * Math.PI) / 180;
+      const distForHeight = size.y / 2 / Math.tan(vFov / 2);
+      const distForWidth = size.x / 2 / (Math.tan(vFov / 2) * camera.aspect);
+
+      // contain => choose MAX (show all). cover => choose MIN (fill, allow crop)
+      const dist =
+        fit === "cover"
+          ? Math.min(distForHeight, distForWidth) * 0.95
+          : Math.max(distForHeight, distForWidth) * 1.05;
 
       camera.position.set(
         center.x + dist,
-        center.y + dist * 0.5,
+        center.y + dist * 0.45,
         center.z + dist
       );
       camera.near = Math.max(0.01, dist / 100);
@@ -116,48 +126,49 @@ export default function DeskSetupViewer({
       controls.update();
     };
 
-    // GLTF + DRACO loader
+    // Load GLB + hide backdrops
     const loader = new GLTFLoader();
-
-    // Option 1: use Google's hosted decoder (easiest)
     const draco = new DRACOLoader();
     draco.setDecoderPath(
       "https://www.gstatic.com/draco/versioned/decoders/1.5.6/"
     );
-    // Option 2 (local): put decoder files in /public/draco/ and use:
-    // draco.setDecoderPath("/draco/");
     loader.setDRACOLoader(draco);
 
-    let modelRoot: THREE.Object3D | null = null;
-
     loader.load(
-      src, // e.g. "/models/setup-draco.glb"
+      src,
       (gltf) => {
-        modelRoot = gltf.scene;
+        const root = gltf.scene;
+        root.traverse((o: THREE.Object3D) => {
+          const mesh = o as THREE.Mesh;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          if (!(mesh as any).isMesh) return;
+          // hide by name hints (case-insensitive)
+          const nm = (mesh.name || "").toLowerCase();
+          if (hideByName.some((h) => nm.includes(h))) mesh.visible = false;
 
-        modelRoot.traverse((obj) => {
-          const mesh = obj as THREE.Mesh;
-          if (mesh.isMesh) {
-            mesh.castShadow = true;
-            mesh.receiveShadow = true;
-          }
+          // give PBR a bit of pop on dark gradient
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const mat = mesh.material as any;
+          if (mat && "envMapIntensity" in mat) mat.envMapIntensity = 0.6;
         });
 
-        scene.add(modelRoot);
-        frameObject(modelRoot);
+        scene.add(root);
+        frameObject(root);
       },
       undefined,
-      (err) => {
-        console.error("Failed to load GLB:", err);
-      }
+      (err) => console.error("Failed to load GLB:", err)
     );
 
     // Resize
     const onResize = () => {
       const { clientWidth, clientHeight } = container;
+      const dpr = Math.min(window.devicePixelRatio, 2.5);
+      renderer.setPixelRatio(dpr);
       renderer.setSize(clientWidth, clientHeight);
       camera.aspect = clientWidth / clientHeight;
       camera.updateProjectionMatrix();
+      composer.setSize(clientWidth, clientHeight);
+      smaa.setSize(clientWidth * dpr, clientHeight * dpr);
     };
     window.addEventListener("resize", onResize);
 
@@ -166,30 +177,36 @@ export default function DeskSetupViewer({
     const loop = () => {
       raf = requestAnimationFrame(loop);
       controls.update();
-      renderer.render(scene, camera);
+      composer.render();
     };
     loop();
 
-    // Cleanup
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", onResize);
       controls.dispose();
+      composer.dispose();
+      smaa.dispose?.();
       renderer.dispose();
       pmrem.dispose();
       draco.dispose();
       if (grid) scene.remove(grid);
       if (axes) scene.remove(axes);
       const canvas = renderer.domElement;
-      if (canvas.parentElement) canvas.parentElement.removeChild(canvas);
+      canvas.parentElement?.removeChild(canvas);
     };
-  }, [src, autoRotate, helpers]);
+  }, [src, autoRotate, helpers, fit, interactive, hideByName.join(",")]);
 
   return (
     <div
       ref={containerRef}
-      style={{ width: "100%", height: "100%", ...style }}
-      aria-label="3D desk setup viewer"
+      style={{
+        width: "100%",
+        height: "100%",
+        pointerEvents: interactive ? "auto" : "none", // background shouldn't steal scroll
+        ...style,
+      }}
+      aria-label="3D background viewer"
     />
   );
 }

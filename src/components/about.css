@@ -1,0 +1,24 @@
+.title {
+  padding-top: 5%;
+  color: #aaa6c3;
+  font-size: 24px;
+  font-weight: 600;
+  margin-left: 30px;
+}
+
+.sub-title {
+  color: white;
+  font-size: 50px;
+  font-weight: 800;
+  margin-left: 30px;
+}
+
+.description {
+  color: white;
+  max-width: 60%;
+  font-size: 20px;
+  line-height: 1.8;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 30px;
+}
