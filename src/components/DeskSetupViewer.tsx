@@ -195,7 +195,7 @@ export default function DeskSetupViewer({
       const canvas = renderer.domElement;
       canvas.parentElement?.removeChild(canvas);
     };
-  }, [src, autoRotate, helpers, fit, interactive, hideByName.join(",")]);
+  }, [src, autoRotate, helpers, fit, interactive, hideByName]);
 
   return (
     <div
