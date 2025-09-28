@@ -4,6 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Navbar from "./components/Navbar";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
 
 export default function App() {
   return (
@@ -14,6 +16,12 @@ export default function App() {
           <Hero />
           <div className="h-screen bg-gradient-to-b from-black to-[#280137] min-h-screen">
             <About />
+          </div>
+          <div className="h-screen bg-gradient-to-t from-black to-[#280137] min-h-screen">
+            <Projects />
+          </div>
+          <div className="h-screen bg-gradient-to-b from-black to-[#280137] min-h-screen">
+            <Contact />
           </div>
         </div>
       </div>
