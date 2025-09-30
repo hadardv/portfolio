@@ -73,10 +73,9 @@ export default function About() {
                 sections={[
                   {
                     title: "UI",
-                    items: ["React", "Framer Motion", "Tailwind"],
+                    items: ["React", "CSS", "HTML", "Tailwind"],
                   },
-                  { title: "State", items: ["React Query", "Zustand"] },
-                  { title: "Build", items: ["Vite", "Webpack"] },
+                  { title: "Build", items: ["Vite"] },
                 ]}
               />
               <SkillsCard
@@ -86,6 +85,7 @@ export default function About() {
                 sections={[
                   { title: "Cloud", items: ["AWS S3", "Firebase"] },
                   { title: "Ops", items: ["Docker", "CI/CD"] },
+                  { title: "Tools", items: ["git"] },
                 ]}
               />
               <SkillsCard
@@ -99,9 +99,9 @@ export default function About() {
                   },
                   {
                     title: "ORM/DB",
-                    items: ["TypeORM", "PostgreSQL", "MSSQL"],
+                    items: ["TypeORM", "PostgreSQL", "MSSQL", "SQLite"],
                   },
-                  { title: "Auth", items: ["JWT", "RBAC", "OAuth2"] },
+                  { title: "Auth", items: ["JWT", "OAuth2"] },
                 ]}
               />
             </div>

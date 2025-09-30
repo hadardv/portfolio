@@ -1,5 +1,6 @@
 import { easeOut, motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import ProjectCard from "./ProjectCard";
 
 export default function Projects() {
   const ref = useRef<HTMLElement | null>(null);
@@ -21,7 +22,7 @@ export default function Projects() {
     >
       <motion.h2
         className="title"
-        style={{ y: yTitle, opacity: fadeIn }}
+        style={{ y: yTitle, opacity: fadeIn, marginBottom: 30 }}
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.6 }}
@@ -29,6 +30,38 @@ export default function Projects() {
       >
         Projects
       </motion.h2>
+
+      <div className="flex flex-row gap-10 justify-center sm: flex-col">
+        <ProjectCard
+          name="PantryPal"
+          description="A smart pantry app for managing your home pantry"
+          stack={[
+            "React Native",
+            "Typescript",
+            "NFCManager",
+            "Springboot",
+            "MongoDB",
+          ]}
+          link="project.com"
+          image="hahaha"
+        />
+
+        <ProjectCard
+          name="EV Catalog"
+          description="This is my first project"
+          stack={["React", "Postgresql", "Javascript"]}
+          link="project.com"
+          image="hahaha"
+        />
+
+        <ProjectCard
+          name="Habit Pals"
+          description="Social network Android app for tracking and sharing new habits with friends"
+          stack={["Kotlin", "Firebase"]}
+          link="project.com"
+          image="hahaha"
+        />
+      </div>
     </section>
   );
 }

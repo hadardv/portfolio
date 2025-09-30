@@ -111,7 +111,10 @@ export default function SkillsCard({
                     {s.items.map((t) => (
                       <span
                         key={t}
-                        className="rounded-full border border-white/20 bg-white/10 px-3 py-2 text-s text-white/90"
+                        className="inline-flex items-center justify-center whitespace-nowrap
+                                  min-w-[85px] px-5 py-2
+                                  rounded-full border border-white/20 bg-white/10
+                                  text-sm text-white/90"
                       >
                         {t}
                       </span>
