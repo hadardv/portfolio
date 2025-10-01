@@ -67,3 +67,14 @@ html {
     rgba(60, 51, 80, 0) 100%
   );
 }
+
+@keyframes sparkDown {
+  0% {
+    transform: translate(-50%, -10%);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, 102%);
+    opacity: 0;
+  }
+}
