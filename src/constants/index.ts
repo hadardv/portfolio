@@ -10,32 +10,38 @@ export const navLinks = [
 export const projects: Project[] = [
   {
     id: "pantrypal",
-    title: "PantryPal — Smart Pantry",
-    subtitle: "React Native • Spring Boot • NFC",
-    tags: ["React Native", "Spring Boot", "NFC", "S3"],
+    title: "PantryPal — Smart Pantry App",
+    subtitle:
+      "Smart pantry management mobile app, designed to help users track their food inventory, manage shopping lists, and scan items using NFC technology.",
+    tags: ["React Native", "Spring Boot", "NFC", "Docker"],
     bullets: [
       "Inventory + shopping lists with NFC tags",
       "Auth, REST API, CI/CD, S3 file handling",
     ],
+    hrefRepo: "https://github.com/hadardv/PantryPal",
   },
   {
-    id: "roadsense",
-    title: "Road Sense — Mobileye-like POC",
-    subtitle: "Android • Kotlin • ML Kit",
-    tags: ["Android", "Kotlin", "ML Kit"],
+    id: "habitpals",
+    title: "Habit Pals",
+    subtitle:
+      "Habit Pals is a social habit-tracking app that helps users build better habits, track progress, and stay accountable with friends.",
+    tags: ["Android", "Kotlin", "Firebase"],
     bullets: [
       "Real-time speed & sign detection",
       "Foreground service + analytics",
     ],
+    hrefRepo: "https://github.com/hadardv/Habit-Pals",
   },
   {
-    id: "hoger",
+    id: "carsCatalog",
     title: "EV Catalog and BI Analytics",
-    subtitle: "React • TypeScript • TypeORM",
-    tags: ["React", "TypeORM", "RBAC"],
+    subtitle:
+      "An EV catalog that lets users create, update, and organize models with powerful search and filters, plus BI analytics across multiple chart types.",
+    tags: ["React", "Postgres"],
     bullets: [
       "Roles/permissions across groups/projects",
       "File management, tokens, migrations",
     ],
+    hrefRepo: "https://github.com/hadardv/carsProj---final",
   },
 ];
