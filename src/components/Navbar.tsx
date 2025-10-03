@@ -32,10 +32,9 @@ export default function Navbar() {
         scrolled ? "bg-primary/90" : "bg-white/15"
       } backdrop-blur`}
     >
-      <div className="container mx-auto max-w-[1280px] h-16 px-4 sm:px-8 flex items-center justify-between">
+      <div className="w-full h-16 flex items-center justify-between !px-4 sm:!px-6 lg:!px-8">
         <Link
           to="/"
-          className="shrink-0 ml-20"
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
@@ -47,7 +46,7 @@ export default function Navbar() {
           </p>
         </Link>
 
-        <ul className="hidden sm:flex items-center gap-10">
+        <ul className="hidden sm:flex items-center gap-10 ">
           {navLinks.map((nav) => (
             <li
               key={nav.id}
@@ -80,7 +79,7 @@ export default function Navbar() {
           toggle ? "flex" : "hidden"
         } sm:hidden p-6 black-gradient absolute top-16 right-4 min-w-[180px] z-30 rounded-xl`}
       >
-        <ul className="flex flex-col gap-4">
+        <ul className="flex flex-col gap-4 ">
           {navLinks.map((nav) => (
             <li
               key={nav.id}
