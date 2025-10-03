@@ -14,10 +14,6 @@ export const projects: Project[] = [
     subtitle:
       "Smart pantry management mobile app, designed to help users track their food inventory, manage shopping lists, and scan items using NFC technology.",
     tags: ["React Native", "Spring Boot", "NFC", "Docker"],
-    bullets: [
-      "Inventory + shopping lists with NFC tags",
-      "Auth, REST API, CI/CD, S3 file handling",
-    ],
     hrefRepo: "https://github.com/hadardv/PantryPal",
   },
   {
@@ -26,10 +22,6 @@ export const projects: Project[] = [
     subtitle:
       "Habit Pals is a social habit-tracking app that helps users build better habits, track progress, and stay accountable with friends.",
     tags: ["Android", "Kotlin", "Firebase"],
-    bullets: [
-      "Real-time speed & sign detection",
-      "Foreground service + analytics",
-    ],
     hrefRepo: "https://github.com/hadardv/Habit-Pals",
   },
   {
@@ -38,10 +30,6 @@ export const projects: Project[] = [
     subtitle:
       "An EV catalog that lets users create, update, and organize models with powerful search and filters, plus BI analytics across multiple chart types.",
     tags: ["React", "Postgres"],
-    bullets: [
-      "Roles/permissions across groups/projects",
-      "File management, tokens, migrations",
-    ],
     hrefRepo: "https://github.com/hadardv/carsProj---final",
   },
 ];
