@@ -20,6 +20,9 @@ export default function App() {
           <div className="h-screen bg-gradient-to-t from-black to-[#280137] min-h-screen">
             <Projects />
           </div>
+          {/* <div className="h-10px bg-gradient-to-b from-black to-[#280137] min-h-screen">
+            <Tech />
+          </div> */}
           <div className="h-screen bg-gradient-to-b from-black to-[#280137] min-h-screen">
             <Contact />
           </div>

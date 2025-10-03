@@ -107,6 +107,9 @@ export default function About() {
             </div>
           </div>
         </div>
+        {/* <div className=" flex justify-center !px-20">
+          <Tech />
+        </div> */}
       </motion.div>
     </section>
   );

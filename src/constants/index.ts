@@ -1,9 +1,22 @@
 import type { Project } from "../components/ProjectCard";
+import {
+  javascript,
+  typescript,
+  html,
+  css,
+  reactjs,
+  tailwind,
+  nodejs,
+  mongodb,
+  git,
+  figma,
+  docker,
+  threejs,
+} from "../assets/index";
 
 export const navLinks = [
   { id: "about", title: "About" },
   { id: "projects", title: "Projects" },
-  // { id: "stack", title: "Stack" },
   { id: "contact", title: "Contact" },
 ];
 
@@ -31,5 +44,56 @@ export const projects: Project[] = [
       "An EV catalog that lets users create, update, and organize models with powerful search and filters, plus BI analytics across multiple chart types.",
     tags: ["React", "Postgres"],
     hrefRepo: "https://github.com/hadardv/carsProj---final",
+  },
+];
+
+export const technologies = [
+  {
+    name: "HTML 5",
+    icon: html,
+  },
+  {
+    name: "CSS 3",
+    icon: css,
+  },
+  {
+    name: "JavaScript",
+    icon: javascript,
+  },
+  {
+    name: "TypeScript",
+    icon: typescript,
+  },
+  {
+    name: "React JS",
+    icon: reactjs,
+  },
+  {
+    name: "Tailwind CSS",
+    icon: tailwind,
+  },
+  {
+    name: "Node JS",
+    icon: nodejs,
+  },
+  {
+    name: "MongoDB",
+    icon: mongodb,
+  },
+  {
+    name: "Three JS",
+    icon: threejs,
+  },
+  {
+    name: "git",
+    icon: git,
+  },
+  {
+    name: "figma",
+    icon: figma,
+  },
+  {
+    name: "docker",
+    icon: docker,
   },
 ];
