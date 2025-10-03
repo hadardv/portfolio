@@ -14,7 +14,7 @@ export default function Hero() {
         style={{ position: "absolute", inset: 0, zIndex: 0 }}
       />
 
-      <div className="absolute top-3/4 -translate-y-1/2 left-6 sm:left-10 md: left-16 z-20">
+      <div className="absolute top-6/7 -translate-y-1/2 left-6 sm:left-10 md: left-16 z-20">
         <motion.div
           className="pointer-events-none text-left px-8 max-w-3xl text-white  "
           initial={{ opacity: 0, y: 10 }}

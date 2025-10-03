@@ -35,7 +35,7 @@ export default function Navbar() {
       <div className="container mx-auto max-w-[1280px] h-16 px-4 sm:px-8 flex items-center justify-between">
         <Link
           to="/"
-          className="shrink-0"
+          className="shrink-0 ml-20"
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
