@@ -1,6 +1,7 @@
 import { easeOut, motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import DeskSetupViewer from "./DeskSetupViewer";
+import "./contact.css";
 
 export default function Contact() {
   const ref = useRef<HTMLElement | null>(null);
@@ -30,23 +31,25 @@ export default function Contact() {
       >
         Let's Talk!
       </motion.h2>
-      <DeskSetupViewer
-        src="/models/need_some_space.glb"
-        fit="cover"
-        interactive={true}
-        autoRotate
-        style={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: "auto",
-          width: "50%",
-          zIndex: 0,
-          marginRight: "20px",
-          marginTop: "20px",
-        }}
-      />
+      <div className="container">
+        <DeskSetupViewer
+          src="/models/need_some_space.glb"
+          fit="cover"
+          interactive={true}
+          autoRotate
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: "auto",
+            width: "50%",
+            zIndex: 0,
+            marginRight: "20px",
+            marginTop: "20px",
+          }}
+        />
+      </div>
     </section>
   );
 }

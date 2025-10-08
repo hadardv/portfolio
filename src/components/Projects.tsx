@@ -36,7 +36,18 @@ export default function Projects() {
         Personal Projects
       </motion.h2>
       <TimelineSpine />
-      <div className="projects grid grid-cols-[500px_500px] grid-rows-3 gap-x-16 gap-y-10 w-fit w-full justify-center">
+      <motion.div
+        className="projects grid grid-cols-[500px_500px] grid-rows-3 gap-x-16 gap-y-10 w-fit w-full justify-center"
+        style={{
+          y: yTitle,
+          opacity: fadeIn,
+          marginBottom: 30,
+        }}
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.6 }}
+        transition={{ duration: 0.6, ease: easeOut }}
+      >
         {projects.map((p, i) => (
           <ProjectCard
             project={p}
@@ -45,7 +56,7 @@ export default function Projects() {
             row={(i % 3) + 1}
           />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
