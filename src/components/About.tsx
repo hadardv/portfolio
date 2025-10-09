@@ -33,7 +33,7 @@ export default function About() {
         </motion.h2>
 
         <motion.p
-          className="sub-title"
+          className="sub-title bg-gradient-to-r from-[#ff4fd8] via-[#2dd4ff] to-[#ffd500] bg-clip-text text-transparent animate-gradient"
           style={{ y: ySubtitle, opacity: fadeIn }}
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,6 +56,23 @@ export default function About() {
           team player who collaborates to build efficient, scalable, and
           user-friendly solutions to real-world problems.
         </motion.p>
+
+        <motion.a
+          href="/cv/HadarDavid_CV.pdf"
+          download
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cv-btn "
+          style={{ y: yBody, opacity: fadeIn }}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.1 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ duration: 0.6, ease: easeOut }}
+          aria-label="Download my CV as PDF"
+        >
+          Download My CV
+        </motion.a>
       </div>
       <motion.div
         initial={{ opacity: 0, y: 12 }}
