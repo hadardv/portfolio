@@ -6,10 +6,12 @@ import About from "./components/About";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import GlobalCursorGlow from "./utils/GlobalCursorGlow";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <GlobalCursorGlow />
       <div className="relative z-0">
         <div className="h-screen bg-gradient-to-r from-[#280137] to-black min-h-screen">
           <Navbar />

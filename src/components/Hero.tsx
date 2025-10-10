@@ -14,7 +14,6 @@ export default function Hero() {
         autoRotate
         style={{ position: "absolute", inset: 0, zIndex: 0, opacity: 0.6 }}
       />
-
       <div className="absolute top-2/7 -translate-y-1/2 left-6 sm:left-10 md:left-16 z-20">
         <motion.div
           className="pointer-events-none text-left px-8 max-w-3xl text-white  "

@@ -6,6 +6,8 @@ html {
 
 :root {
   --nav-h: 64px;
+  --mx: -999px;
+  --my: -999px;
 }
 .snap-section {
   scroll-margin-top: var(--nav-h);
@@ -90,5 +92,32 @@ html {
     100% {
       background-position: 0% 50%;
     }
+  }
+}
+
+.global-cursor-glow {
+  position: fixed;
+  inset: 0vmax;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  transition: opacity 0.2s ease;
+  background: radial-gradient(
+    60vmin circle at var(--mx) var(--my),
+    rgb(222, 220, 211),
+    rgba(128, 25, 217, 0.462) 25%,
+    rgba(255, 79, 216, 0.06) 45%,
+    transparent 70%
+  );
+}
+
+.global-cursor-glow.is-idle {
+  opacity: 0.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .global-cursor-glow {
+    display: none;
   }
 }
