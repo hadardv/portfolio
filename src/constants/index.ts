@@ -12,11 +12,15 @@ import {
   figma,
   docker,
   threejs,
+  pantrypal,
+  habitpals,
+  carcatalog,
 } from "../assets/index";
 
 export const navLinks = [
   { id: "about", title: "About" },
   { id: "projects", title: "Projects" },
+  { id: "stack", title: "Stack" },
   { id: "contact", title: "Contact" },
 ];
 
@@ -28,6 +32,7 @@ export const projects: Project[] = [
       "Smart pantry management mobile app, designed to help users track their food inventory, manage shopping lists, and scan items using NFC technology.",
     tags: ["React Native", "Spring Boot", "NFC", "Docker"],
     hrefRepo: "https://github.com/hadardv/PantryPal",
+    imageUrl: pantrypal,
   },
   {
     id: "habitpals",
@@ -36,6 +41,7 @@ export const projects: Project[] = [
       "Habit Pals is a social habit-tracking app that helps users build better habits, track progress, and stay accountable with friends.",
     tags: ["Android", "Kotlin", "Firebase"],
     hrefRepo: "https://github.com/hadardv/Habit-Pals",
+    imageUrl: habitpals,
   },
   {
     id: "carsCatalog",
@@ -44,6 +50,7 @@ export const projects: Project[] = [
       "An EV catalog that lets users create, update, and organize models with powerful search and filters, plus BI analytics across multiple chart types.",
     tags: ["React", "Postgres"],
     hrefRepo: "https://github.com/hadardv/carsProj---final",
+    imageUrl: carcatalog,
   },
 ];
 

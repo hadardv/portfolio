@@ -1,6 +1,5 @@
 import { easeOut, motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import TimelineSpine from "./TimelineSpine";
 import ProjectCard from "./ProjectCard";
 import { projects } from "../constants";
 
@@ -35,9 +34,8 @@ export default function Projects() {
       >
         Personal Projects
       </motion.h2>
-      <TimelineSpine />
       <motion.div
-        className="projects grid grid-cols-[500px_500px] grid-rows-3 gap-x-16 gap-y-10 w-fit w-full justify-center"
+        className="projects flex flex-col items-center gap-30 w-fit w-full justify-center"
         style={{
           y: yTitle,
           opacity: fadeIn,
@@ -48,13 +46,8 @@ export default function Projects() {
         viewport={{ once: false, amount: 0.6 }}
         transition={{ duration: 0.6, ease: easeOut }}
       >
-        {projects.map((p, i) => (
-          <ProjectCard
-            project={p}
-            side={i % 2 === 0 ? "left" : "right"}
-            key={p.id}
-            row={(i % 3) + 1}
-          />
+        {projects.map((p) => (
+          <ProjectCard project={p} key={p.id} />
         ))}
       </motion.div>
     </section>

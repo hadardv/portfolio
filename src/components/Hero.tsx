@@ -27,7 +27,7 @@ export default function Hero() {
               className="inline-block bg-clip-text text-transparent"
               style={{
                 backgroundImage:
-                  "linear-gradient(to right, #ff4fd8, #2dd4ff, #ffd500)",
+                  "linear-gradient(to right, #ff47d7ff, #c800ffff, #5160ffff)",
                 backgroundSize: "200% 200%",
                 backgroundPosition: "0% 50%",
                 animation: "gradient-shift 6s ease infinite",
