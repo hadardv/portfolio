@@ -74,6 +74,7 @@ export default function About() {
           Download My CV
         </motion.a>
       </div>
+
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
