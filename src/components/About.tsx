@@ -16,119 +16,117 @@ export default function About() {
   const fadeIn = useTransform(scrollYProgress, [0, 0.1, 1], [0, 1, 1]);
 
   return (
-    <section
-      id="about"
-      ref={ref}
-      className="relative w-full min-h-screen scroll-mt-20"
-    >
-      <div className="mx-auto max-w-[1280px] px-6 sm:px-10 py-20 md:py-28">
-        <motion.h2
-          className="title"
+    <section id="about" ref={ref} className="about-section">
+      <div className="about-grid">
+        {/* Center column (title + name + short line) */}
+        <motion.div
+          className="about-center"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.6 }}
           transition={{ duration: 0.6, ease: easeOut }}
         >
-          About Me
-        </motion.h2>
+          <p
+            className="center-name"
+            style={{
+              transform: `translateY(${ySubtitle.get()}px)`,
+              opacity: fadeIn.get(),
+            }}
+          >
+            About Me
+          </p>
+          <p
+            className="center-sub"
+            style={{
+              transform: `translateY(${yBody.get()}px)`,
+              opacity: fadeIn.get(),
+            }}
+          >
+            Overview.
+          </p>
 
-        <motion.p
-          className="sub-title bg-gradient-to-r from-[#ff4fd8] via-[#2dd4ff] to-[#ffd500] bg-clip-text text-transparent animate-gradient"
-          style={{ y: ySubtitle, opacity: fadeIn }}
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
-          transition={{ duration: 0.6, ease: easeOut }}
-        >
-          Overview.
-        </motion.p>
+          <p
+            className="center-desc"
+            style={{
+              transform: `translateY(${yBody.get()}px)`,
+              opacity: fadeIn.get(),
+            }}
+          >
+            Full-stack developer focused on TypeScript, React, and Node—building
+            efficient, scalable, and user-friendly experiences.
+          </p>
 
-        <motion.p
-          className="description"
-          style={{ y: yBody, opacity: fadeIn }}
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
-          transition={{ duration: 0.6, ease: easeOut }}
-        >
-          I’m Hadar, a full-stack software developer with experience in
-          TypeScript and expertise in React and Node.js. I’m a quick learner and
-          team player who collaborates to build efficient, scalable, and
-          user-friendly solutions to real-world problems.
-        </motion.p>
+          <a
+            href="/cv/HadarDavid_CV.pdf"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cv-btn center-btn"
+          >
+            Download My CV
+          </a>
 
-        <motion.a
-          href="/cv/HadarDavid_CV.pdf"
-          download
-          target="_blank"
-          rel="noopener noreferrer"
-          className="cv-btn "
-          style={{ y: yBody, opacity: fadeIn }}
+          <div className="center-halo" aria-hidden />
+        </motion.div>
+        <motion.div
+          className="about-card about-left"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          whileHover={{ scale: 1.1 }}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.6, ease: easeOut }}
-          aria-label="Download my CV as PDF"
         >
-          Download My CV
-        </motion.a>
+          <SkillsCard
+            name="Frontend"
+            icon={<img src="../icons/frontend.png" alt="" />}
+            sections={[
+              {
+                title: "Core",
+                items: ["React", "TypeScript", "Tailwind"],
+              },
+            ]}
+          />
+        </motion.div>
+
+        {/* Right card */}
+        <motion.div
+          className="about-card about-right"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.6, ease: easeOut }}
+        >
+          <SkillsCard
+            name="Infrastructure"
+            icon={<img src="../icons/react.png" alt="" />}
+            sections={[
+              {
+                title: "Core",
+                items: ["React", "TypeScript", "Tailwind"],
+              },
+            ]}
+          />
+        </motion.div>
+
+        {/* Bottom center card */}
+        <motion.div
+          className="about-card about-bottom"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.6, ease: easeOut }}
+        >
+          <SkillsCard
+            name="Backend"
+            icon={<img src="../icons/backend.png" alt="" />}
+            sections={[
+              {
+                title: "Core",
+                items: ["React", "TypeScript", "Tailwind"],
+              },
+            ]}
+          />
+        </motion.div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.6 }}
-        transition={{ duration: 0.6, ease: easeOut }}
-      >
-        <div className="mt-12 px-6 sm:px-10">
-          <div className="flex justify-center">
-            <div className="grid w-fit gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-              <SkillsCard
-                name="Frontend Technologies"
-                icon="/icons/frontend.png"
-                size={120}
-                sections={[
-                  {
-                    title: "UI",
-                    items: ["React", "CSS", "HTML", "Tailwind"],
-                  },
-                  { title: "Build", items: ["Vite"] },
-                ]}
-              />
-              <SkillsCard
-                name="Infrastructure"
-                icon="/icons/react.png"
-                size={120}
-                sections={[
-                  { title: "Cloud", items: ["AWS S3", "Firebase"] },
-                  { title: "Ops", items: ["Docker", "CI/CD"] },
-                  { title: "Tools", items: ["git"] },
-                ]}
-              />
-              <SkillsCard
-                name="Backend Technologies"
-                icon="/icons/backend.png"
-                size={120}
-                sections={[
-                  {
-                    title: "Core",
-                    items: ["Node.js", "Express", "TypeScript"],
-                  },
-                  {
-                    title: "ORM/DB",
-                    items: ["TypeORM", "PostgreSQL", "MSSQL", "SQLite"],
-                  },
-                  { title: "Auth", items: ["JWT", "OAuth2"] },
-                ]}
-              />
-            </div>
-          </div>
-        </div>
-        {/* <div className=" flex justify-center !px-20">
-          <Tech />
-        </div> */}
-      </motion.div>
     </section>
   );
 }
