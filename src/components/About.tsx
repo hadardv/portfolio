@@ -1,7 +1,6 @@
 import { easeOut, motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import "./about.css";
-import SkillsCard from "./SkillsCard";
 
 export default function About() {
   const ref = useRef<HTMLElement | null>(null);
@@ -18,7 +17,6 @@ export default function About() {
   return (
     <section id="about" ref={ref} className="about-section">
       <div className="about-grid">
-        {/* Center column (title + name + short line) */}
         <motion.div
           className="about-center"
           initial={{ opacity: 0, y: 12 }}
@@ -67,64 +65,6 @@ export default function About() {
           </a>
 
           <div className="center-halo" aria-hidden />
-        </motion.div>
-        <motion.div
-          className="about-card about-left"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.6, ease: easeOut }}
-        >
-          <SkillsCard
-            name="Frontend"
-            icon={<img src="../icons/frontend.png" alt="" />}
-            sections={[
-              {
-                title: "Core",
-                items: ["React", "TypeScript", "Tailwind"],
-              },
-            ]}
-          />
-        </motion.div>
-
-        {/* Right card */}
-        <motion.div
-          className="about-card about-right"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.6, ease: easeOut }}
-        >
-          <SkillsCard
-            name="Infrastructure"
-            icon={<img src="../icons/react.png" alt="" />}
-            sections={[
-              {
-                title: "Core",
-                items: ["React", "TypeScript", "Tailwind"],
-              },
-            ]}
-          />
-        </motion.div>
-
-        {/* Bottom center card */}
-        <motion.div
-          className="about-card about-bottom"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.6, ease: easeOut }}
-        >
-          <SkillsCard
-            name="Backend"
-            icon={<img src="../icons/backend.png" alt="" />}
-            sections={[
-              {
-                title: "Core",
-                items: ["React", "TypeScript", "Tailwind"],
-              },
-            ]}
-          />
         </motion.div>
       </div>
     </section>
