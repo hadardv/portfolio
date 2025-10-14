@@ -29,7 +29,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 inset-x-0 z-20 ${
-        scrolled ? "bg-primary/90" : "bg-white/15"
+        scrolled ? "bg-primary/10" : "bg-white/15"
       } backdrop-blur`}
     >
       <div className="w-full h-16 flex items-center justify-between !px-4 sm:!px-6 lg:!px-8">
@@ -40,18 +40,27 @@ export default function Navbar() {
             window.scrollTo(0, 0);
           }}
         >
-          <p className="text-white text-[18px] font-bold">
+          <p
+            className={`${
+              scrolled ? "text-black" : "text-white"
+            } text-[18px] font-bold`}
+          >
             Hadar{" "}
             <span className="hidden sm:inline">| Full Stack Developer</span>
           </p>
         </Link>
 
-        <ul className="hidden sm:flex items-center gap-10 ">
+        <ul
+          className={`
+          hidden sm:flex items-center gap-10`}
+        >
           {navLinks.map((nav) => (
             <li
               key={nav.id}
-              className={`text-[18px] font-medium cursor-pointer ${
-                active === nav.id ? "text-white" : "text-white/80"
+              className={`${
+                scrolled ? "text-black" : "text-white"
+              } text-[18px] font-medium cursor-pointer ${
+                active === nav.id ? "text-black" : "text-black/80"
               } hover:text-white`}
             >
               <a href={`#${nav.id}`} onClick={(e) => go(nav.id, e)}>

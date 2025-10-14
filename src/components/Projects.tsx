@@ -18,22 +18,8 @@ export default function Projects() {
     <section
       id="projects"
       ref={ref}
-      className="relative w-full scroll-mt-20 overflow-hidden py-20"
+      className="relative w-full overflow-hidden py-20"
     >
-      <motion.h2
-        className="title container mx-auto max-w-6xl px-4"
-        style={{
-          y: yTitle,
-          opacity: fadeIn,
-          marginBottom: 30,
-        }}
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.6 }}
-        transition={{ duration: 0.6, ease: easeOut }}
-      >
-        Personal Projects
-      </motion.h2>
       <motion.div
         className="projects flex flex-col items-center gap-30 w-fit w-full justify-center"
         style={{

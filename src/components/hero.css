@@ -1,13 +1,79 @@
-@layer utilities {
-  @keyframes gradient-shift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade {
+    animation: none;
+  }
+  .gradient-shift {
+    animation: none;
+  }
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;
+  isolation: isolate;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.8;
+  z-index: 0;
+}
+
+.hero-content {
+  position: sticky;
+  top: 4rem;
+  z-index: 2;
+  padding-inline: clamp(1rem, 4vw, 4rem);
+}
+
+@media (min-width: 768px) {
+  .hero-content {
+    top: 6rem;
+  }
+}
+
+.content {
+  margin-left: 2rem;
+}
+
+.hero-fade {
+  animation: hero-fade 0.9s ease forwards;
+}
+
+.gradient-shift {
+  font-weight: 800;
+  font-size: 900;
+  margin: 0.1rem 0;
+  background-image: linear-gradient(90deg, #9a031e, #e63946, #f1faee);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
 }

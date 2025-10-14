@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+.section-one {
+  position: relative;
+  z-index: 0;
+  height: auto;
+  min-height: screen;
+  background-color: #1d3557;
+}
+
+.section-two {
+  position: relative;
+  min-height: screen;
+  z-index: 0;
+  height: auto;
+  background-color: #f1faee;
+}
+
+.section-tech {
+  height: 10px;
+  min-height: 350px;
+  background-color: beige;
+}

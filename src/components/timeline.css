@@ -1,0 +1,215 @@
+:root {
+  --tl-maxw: 760px;
+  --tl-pad: clamp(12px, 2.5vw, 18px);
+  --tl-radius: 16px;
+
+  --tl-bg-card: rgba(255, 255, 255, 0.08);
+  --tl-border: rgba(255, 255, 255, 0.18);
+  --tl-text: rgba(31, 31, 31, 0.92);
+  --tl-text-muted: rgba(62, 62, 62, 0.75);
+
+  --tl-spine: linear-gradient(to bottom, #1d3557, #457b9d, #e63946);
+
+  --tl-ring: #e63946;
+  --tl-glow: #e63946;
+
+  --tl-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --tl-underline: linear-gradient(90deg, #1d3557, #457b9d, #e63946);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --tl-bg-card: rgba(255, 255, 255, 0.6);
+    --tl-border: rgba(0, 0, 0, 0.08);
+    --tl-text: rgba(0, 0, 0, 0.9);
+    --tl-text-muted: rgba(0, 0, 0, 0.7);
+    --tl-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.timeline {
+  width: 100%;
+}
+
+.timeline__sr-only {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+.timeline__wrap {
+  position: relative;
+  margin-inline: auto;
+  max-width: var(--tl-maxw);
+  padding: var(--tl-pad);
+}
+
+.timeline__spine {
+  position: absolute;
+  left: 22px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--tl-spine);
+  filter: saturate(1.05);
+  pointer-events: none;
+}
+
+@keyframes tl-shimmer {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.12);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+.timeline__shimmer {
+  animation: tl-shimmer 3.5s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .timeline__shimmer {
+    animation: none;
+  }
+}
+
+.timeline__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  row-gap: 80px;
+}
+
+.timeline__item {
+  position: relative;
+  padding-left: 64px;
+}
+
+.timeline__dot-wrap {
+  position: absolute;
+  left: -6px;
+  top: 20px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+}
+
+.timeline__dot-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--tl-glow);
+  filter: blur(8px);
+}
+
+.timeline__dot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--tl-ring);
+  animation: tl-pulse 1.6s ease-in-out infinite;
+}
+@keyframes tl-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 3px var(--tl-ring);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 4px var(--tl-ring);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .timeline__dot {
+    animation: none;
+  }
+}
+
+.timeline__card {
+  position: relative;
+  width: 400px;
+  background: var(--tl-bg-card);
+  border: 1px solid var(--tl-border);
+  border-radius: var(--tl-radius);
+  padding: 14px 16px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--tl-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.timeline__card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+}
+
+.timeline__meta {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--tl-text-muted);
+}
+
+.timeline__year {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--tl-border);
+  border-radius: 999px;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.timeline__emoji {
+  font-size: 14px;
+}
+
+.timeline__title {
+  margin: 8px 0 2px;
+  font-size: 18px;
+  line-height: 1.25;
+  color: var(--tl-text);
+  font-weight: 600;
+}
+
+.timeline__desc {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--tl-text-muted);
+}
+
+.timeline__underline {
+  margin-top: 10px;
+  height: 2px;
+  width: 0;
+  background: var(--tl-underline);
+  transition: width 0.3s ease;
+}
+.timeline__card:hover .timeline__underline {
+  width: 100%;
+}
+
+@media (max-width: 520px) {
+  .timeline__item {
+    padding-left: 56px;
+  }
+  .timeline__spine {
+    left: 20px;
+  }
+  .timeline__dot-wrap {
+    left: 11px;
+  }
+}

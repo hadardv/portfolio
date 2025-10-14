@@ -7,27 +7,22 @@ import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import GlobalCursorGlow from "./utils/GlobalCursorGlow";
-import TimelineSpine from "./components/TimelineSpine";
-import Tech from "./components/Tech";
 
 export default function App() {
+  //bg-gradient-to-r from-[#280137] to-black
   return (
     <BrowserRouter>
       <GlobalCursorGlow />
-      <div className="relative z-0 h-auto bg-gradient-to-r from-[#280137] to-black min-h-screen">
+      <div className="section-one">
         <Navbar />
         <Hero />
-        <TimelineSpine />
-        <div className="h-auto bg-gradient-to-b from-black to-[#280137] min-h-screen">
+        <div className="section-two">
           <About />
         </div>
-        <div className="h-auto bg-gradient-to-t from-black to-[#280137] min-h-screen">
+        <div className="section-one">
           <Projects />
         </div>
-        <div className="h-[10px] bg-gradient-to-b from-black to-[#280137] min-h-[350px]">
-          <Tech />
-        </div>
-        <div className="h-auto bg-gradient-to-t from-black to-[#280137] min-h-screen">
+        <div className="section-two">
           <Contact />
         </div>
       </div>
