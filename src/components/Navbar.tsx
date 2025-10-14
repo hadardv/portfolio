@@ -14,7 +14,7 @@ export default function Navbar() {
     const el = document.getElementById(id);
     if (!el) return;
     const navH = document.querySelector("nav")?.offsetHeight ?? 72;
-    const y = el.getBoundingClientRect().top + window.scrollY - navH + 50;
+    const y = el.getBoundingClientRect().top + window.scrollY - navH + 60;
     window.scrollTo({ top: y, behavior: "smooth" });
     setActive(id);
     setToggle(false);
