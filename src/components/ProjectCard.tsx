@@ -2,11 +2,13 @@ import "./projectCard.css";
 
 export type Project = {
   id: string;
+  dataIdx: string;
   title: string;
   subtitle?: string;
   bullets?: string[];
   tags: string[];
   hrefRepo?: string;
+  className: string;
   imageUrl: string;
 };
 
@@ -16,7 +18,8 @@ export default function ProjectCard({ project }: Props) {
   return (
     <div className="wrapper">
       <div
-        className="card"
+        className={`card ${project.className}`}
+        data-idx={project.dataIdx}
         style={{
           backgroundImage: `url(${project.imageUrl})`,
         }}
@@ -26,16 +29,13 @@ export default function ProjectCard({ project }: Props) {
           <div className="proj-title">{project.title}</div>
           <p className="proj-subtitle">{project.subtitle}</p>
 
-          {/* <div className="tags">
+          <div className="tags">
             {project.tags.map((t) => (
-              <span
-                key={t}
-                className="tag rounded-full border border-white/20 bg-white/10 text-sm text-white/90"
-              >
+              <span key={t} className="tag">
                 {t}
               </span>
             ))}
-          </div> */}
+          </div>
 
           <div className="source-link">
             <button

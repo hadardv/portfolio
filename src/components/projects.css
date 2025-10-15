@@ -1,0 +1,14 @@
+.headline {
+  font-weight: 800;
+  font-size: 24px;
+  font-size: clamp(40px, 8vw, 72px);
+  text-align: center;
+  margin: 0.1rem 0;
+  margin-bottom: 2rem;
+  background-image: linear-gradient(90deg, #9a031e, #e63946, #f1faee);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+}
