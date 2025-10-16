@@ -12,57 +12,90 @@ export type Project = {
   imageUrl: string;
 };
 
-type Props = { project: Project };
+// type Props = { project: Project };
 
-export default function ProjectCard({ project }: Props) {
+export default function ProjectCard() {
   return (
-    <div className="wrapper">
-      <div
-        className={`card ${project.className}`}
-        data-idx={project.dataIdx}
-        style={{
-          backgroundImage: `url(${project.imageUrl})`,
-        }}
-      >
-        <div className="top-color" />
-        <div className="relative z-10 h-full w-full">
-          <div className="proj-title">{project.title}</div>
-          <p className="proj-subtitle">{project.subtitle}</p>
-
-          <div className="tags">
-            {project.tags.map((t) => (
-              <span key={t} className="tag">
-                {t}
-              </span>
-            ))}
-          </div>
-
-          <div className="source-link">
-            <button
-              className="source-btn"
-              onClick={() =>
-                window.open(
-                  project.hrefRepo?.startsWith("http")
-                    ? project.hrefRepo
-                    : `https://${project.hrefRepo}`,
-                  "_blank"
-                )
-              }
-            >
-              Source Code
-            </button>
-            <div className="btn-icon">
-              <svg
-                className="arrow"
-                viewBox="0 0 32 12"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <line x1="0" y1="6" x2="22" y2="6" />
-                <polyline points="22,1 31,6 22,11" />
+    <div className="cards">
+      <div className="card pantry">
+        <div className="info">
+          <p className="title">PantryPal — Smart Pantry App</p>
+          <p className="body">
+            Smart pantry management mobile app, designed to help users track
+            their food inventory, manage shopping lists, and scan items using
+            NFC technology.
+          </p>
+          <button className="cssbuttons-io">
+            <span>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M24 12l-5.657 5.657-1.414-1.414L21.172 12l-4.243-4.243 1.414-1.414L24 12zM2.828 12l4.243 4.243-1.414 1.414L0 12l5.657-5.657L7.07 7.757 2.828 12zm6.96 9H7.66l6.552-18h2.128L9.788 21z"
+                  fill="currentColor"
+                ></path>
               </svg>
-            </div>
-          </div>
+              Code
+            </span>
+          </button>
+        </div>
+
+        {/* whatever you already show in the middle of the card */}
+        <div className="content">
+          <p className="tip">Hover Me</p>
+        </div>
+      </div>
+
+      <div className="card habitPal">
+        <div className="info">
+          <p className="title">Habit Pals</p>
+          <p>
+            Habit Pals is a social habit-tracking app that helps users build
+            better habits, track progress, and stay accountable with friends.
+          </p>
+          <button className="cssbuttons-io">
+            <span>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M24 12l-5.657 5.657-1.414-1.414L21.172 12l-4.243-4.243 1.414-1.414L24 12zM2.828 12l4.243 4.243-1.414 1.414L0 12l5.657-5.657L7.07 7.757 2.828 12zm6.96 9H7.66l6.552-18h2.128L9.788 21z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              Code
+            </span>
+          </button>
+        </div>
+
+        {/* whatever you already show in the middle of the card */}
+        <div className="content">
+          <p className="tip">Hover Me</p>
+        </div>
+      </div>
+      <div className="card cars">
+        <div className="info">
+          <p className="title">EV Cars Catalog</p>
+          <p>
+            An EV catalog that lets users create, update, and organize models
+            with powerful search and filters, plus BI analytics across multiple
+            chart types.
+          </p>
+          <button className="cssbuttons-io">
+            <span>
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                  d="M24 12l-5.657 5.657-1.414-1.414L21.172 12l-4.243-4.243 1.414-1.414L24 12zM2.828 12l4.243 4.243-1.414 1.414L0 12l5.657-5.657L7.07 7.757 2.828 12zm6.96 9H7.66l6.552-18h2.128L9.788 21z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              Code
+            </span>
+          </button>
+        </div>
+
+        {/* whatever you already show in the middle of the card */}
+        <div className="content">
+          <p className="tip">Hover Me</p>
         </div>
       </div>
     </div>

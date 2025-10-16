@@ -6,18 +6,23 @@ import About from "./components/About";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
-import GlobalCursorGlow from "./utils/GlobalCursorGlow";
+// import GlobalCursorGlow from "./utils/GlobalCursorGlow";
 
 export default function App() {
-  //bg-gradient-to-r from-[#280137] to-black
   return (
     <BrowserRouter>
+      {/* <GlobalCursorGlow /> */}
       <Navbar />
       <Hero />
-      <About />
-      <Projects />
-      <Contact />
-      <GlobalCursorGlow />
+      <div className="section-one">
+        <About />
+      </div>
+      <div className="section-two">
+        <Projects />
+      </div>
+      <div className="section-one">
+        <Contact />
+      </div>
     </BrowserRouter>
   );
 }

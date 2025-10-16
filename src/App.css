@@ -5,6 +5,7 @@
   z-index: 0;
   height: auto;
   min-height: screen;
+  background-color: #fff6e3;
 }
 
 .section-two {
@@ -12,7 +13,16 @@
   min-height: screen;
   z-index: 0;
   height: auto;
-  background-color: #f1faee;
+  /* background-color: #cb9df0; */
+  --bg-size: 48px;
+  background-image: repeating-conic-gradient(
+      from 0deg at 0% 0%,
+      #8e1d9e 0deg,
+      #8ca6db 5deg
+    ),
+    repeating-conic-gradient(from 0deg at 100% 100%, #8ca6db 0deg, #8e1d9e 5deg);
+  background-size: var(--bg-size) var(--bg-size);
+  background-blend-mode: screen;
 }
 
 .section-tech {

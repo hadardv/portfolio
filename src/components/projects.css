@@ -12,3 +12,8 @@
   background-size: 200% 200%;
   animation: gradientShift 6s ease infinite;
 }
+
+.projects {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

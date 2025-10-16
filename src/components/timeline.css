@@ -8,13 +8,13 @@
   --tl-text: rgba(31, 31, 31, 0.92);
   --tl-text-muted: rgba(62, 62, 62, 0.75);
 
-  --tl-spine: linear-gradient(to bottom, #1d3557, #457b9d, #e63946);
+  --tl-spine: linear-gradient(to bottom, #f72c5b, #f0c1e1, #ffccea);
 
-  --tl-ring: #e63946;
-  --tl-glow: #e63946;
+  --tl-ring: #f72c5b;
+  --tl-glow: #f72c5b;
 
   --tl-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  --tl-underline: linear-gradient(90deg, #1d3557, #457b9d, #e63946);
+  --tl-underline: linear-gradient(90deg, #f72c5b, #f0c1e1, #ffccea);
 }
 
 @media (prefers-color-scheme: light) {

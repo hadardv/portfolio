@@ -78,14 +78,14 @@ html {
   inset: 0vmax;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.25;
+  opacity: 0.15;
   mix-blend-mode: screen;
   transition: opacity 0.2s ease;
   background: radial-gradient(
     60vmin circle at var(--mx) var(--my),
     rgb(222, 220, 211),
-    rgba(128, 25, 217, 0.462) 25%,
-    rgba(255, 79, 216, 0.06) 45%,
+    #fddbbb 25%,
+    #f0c1e1 45%,
     transparent 70%
   );
 }

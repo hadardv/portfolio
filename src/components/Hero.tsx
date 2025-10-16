@@ -51,7 +51,7 @@ export default function Hero() {
                 fontFamily="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
                 fontSize="92"
                 fontWeight="800"
-                fill="#333"
+                fill="#fff0d0ff"
                 letterSpacing="1"
                 id="text"
               >
@@ -122,7 +122,7 @@ export default function Hero() {
                 y="343"
                 rx="6"
                 ry="6"
-                width="140"
+                width="130"
                 height="30"
                 fill="#2563EB"
               />
