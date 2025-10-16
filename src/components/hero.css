@@ -1,3 +1,37 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  min-width: 100vw;
+  overflow-x: hidden;
+  overflow-x: hidden;
+  --bg-size: 48px;
+  background-image: repeating-conic-gradient(
+      from 0deg at 0% 0%,
+      #8e1d9e 0deg,
+      #8ca6db 5deg
+    ),
+    repeating-conic-gradient(from 0deg at 100% 100%, #8ca6db 0deg, #8e1d9e 5deg);
+  background-size: var(--bg-size) var(--bg-size);
+  background-blend-mode: screen;
+  display: grid;
+  place-items: center;
+}
+
+.content svg {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  margin-left: 9rem;
+}
+
 @keyframes gradient-shift {
   0% {
     background-position: 0% 50%;
@@ -30,36 +64,15 @@
   }
 }
 
-.hero {
-  position: relative;
-  min-height: 100vh;
-  height: 100vh;
-  isolation: isolate;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  opacity: 0.8;
-  z-index: 0;
-}
-
-.hero-content {
-  position: sticky;
-  top: 4rem;
-  z-index: 2;
-  padding-inline: clamp(1rem, 4vw, 4rem);
-}
-
-@media (min-width: 768px) {
-  .hero-content {
-    top: 6rem;
-  }
-}
-
 .content {
-  margin-left: 2rem;
+  width: min(1100px, 92vw);
+  margin-inline: auto;
+}
+
+.content svg {
+  display: block;
+  width: 70%;
+  height: auto;
 }
 
 .hero-fade {
@@ -76,4 +89,60 @@
   color: transparent;
   background-size: 200% 200%;
   animation: gradientShift 6s ease infinite;
+}
+
+#cursor,
+#box,
+#text {
+  cursor: pointer;
+}
+
+#cursor {
+  overflow: visible;
+  transform: translate3d(300px, 0, 0) scale(1);
+  transform-origin: center center;
+  transform-box: fill-box;
+  animation: cursor 5s ease infinite alternate;
+}
+
+@keyframes cursor {
+  0% {
+    opacity: 0;
+    transform: translate3d(300px, 0, 0) scale(1);
+  }
+  30% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(-200px, -200px, 0) scale(1);
+  }
+  65% {
+    opacity: 1;
+    transform: translate3d(-200px, -200px, 0) scale(0.95);
+  }
+  70% {
+    opacity: 1;
+    transform: translate3d(-200px, -200px, 0) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(-300px, -50px, 0) scale(1);
+  }
+}
+
+#box {
+  opacity: 0;
+  animation: box 5s ease infinite alternate;
+}
+@keyframes box {
+  0%,
+  60% {
+    opacity: 0;
+  }
+  65%,
+  100% {
+    opacity: 1;
+  }
 }

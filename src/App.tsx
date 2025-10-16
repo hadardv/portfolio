@@ -12,20 +12,12 @@ export default function App() {
   //bg-gradient-to-r from-[#280137] to-black
   return (
     <BrowserRouter>
+      <Navbar />
+      <Hero />
+      <About />
+      <Projects />
+      <Contact />
       <GlobalCursorGlow />
-      <div className="section-one">
-        <Navbar />
-        <Hero />
-        <div className="section-two">
-          <About />
-        </div>
-        <div className="section-one">
-          <Projects />
-        </div>
-        <div className="section-two">
-          <Contact />
-        </div>
-      </div>
     </BrowserRouter>
   );
 }
