@@ -21,6 +21,9 @@ export default function App() {
         <Projects />
       </div>
       <div className="section-one">
+        <About />
+      </div>
+      <div className="section-two">
         <Contact />
       </div>
     </BrowserRouter>
