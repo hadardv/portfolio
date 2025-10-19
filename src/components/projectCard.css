@@ -110,11 +110,10 @@
   transform: scale(0.9, 0.9);
 }
 
-/* From Uiverse.io by adamgiebl */
 .cssbuttons-io {
   position: relative;
   font-family: inherit;
-  top: 40%;
+  top: 12%;
   font-weight: 500;
   font-size: 18px;
   letter-spacing: 0.05em;
@@ -166,6 +165,16 @@
 
 .cssbuttons-io:active {
   transform: scale(0.95);
+}
+
+.stack .ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.stack .li {
+  gap: 200px;
 }
 
 @media (max-width: 1280px) {

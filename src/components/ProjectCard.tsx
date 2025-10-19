@@ -25,7 +25,22 @@ export default function ProjectCard() {
             their food inventory, manage shopping lists, and scan items using
             NFC technology.
           </p>
-          <button className="cssbuttons-io">
+          <div className="stack">
+            <ul>
+              <li>React Native</li>
+              <li>Springboot</li>
+              <li>MongoDB</li>
+              <li>Docker</li>
+              <li>NFC</li>
+            </ul>
+          </div>
+          <a
+            href="https://github.com/hadardv/PantryPal"
+            rel="noopener noreferrer"
+            target="_blank"
+            aria-label="project-cars"
+            className="cssbuttons-io"
+          >
             <span>
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0h24v24H0z" fill="none"></path>
@@ -36,7 +51,7 @@ export default function ProjectCard() {
               </svg>
               Code
             </span>
-          </button>
+          </a>
         </div>
 
         {/* whatever you already show in the middle of the card */}
@@ -52,7 +67,22 @@ export default function ProjectCard() {
             Habit Pals is a social habit-tracking app that helps users build
             better habits, track progress, and stay accountable with friends.
           </p>
-          <button className="cssbuttons-io">
+          <div className="stack">
+            <ul>
+              <li>Kotlin</li>
+              <li>Firebase</li>
+              <li>Javascript</li>
+              <li>MUI</li>
+              <li>Express</li>
+            </ul>
+          </div>
+          <a
+            href="https://github.com/hadardv/Habit-Pals"
+            rel="noopener noreferrer"
+            target="_blank"
+            aria-label="project-cars"
+            className="cssbuttons-io"
+          >
             <span>
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0h24v24H0z" fill="none"></path>
@@ -63,7 +93,7 @@ export default function ProjectCard() {
               </svg>
               Code
             </span>
-          </button>
+          </a>
         </div>
 
         {/* whatever you already show in the middle of the card */}
@@ -79,7 +109,22 @@ export default function ProjectCard() {
             with powerful search and filters, plus BI analytics across multiple
             chart types.
           </p>
-          <button className="cssbuttons-io">
+          <div className="stack">
+            <ul>
+              <li>Postgresql</li>
+              <li>React</li>
+              <li>Javascript</li>
+              <li>MUI</li>
+              <li>Express</li>
+            </ul>
+          </div>
+          <a
+            href="https://github.com/hadardv/carsProj---final"
+            rel="noopener noreferrer"
+            target="_blank"
+            aria-label="project-cars"
+            className="cssbuttons-io"
+          >
             <span>
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0h24v24H0z" fill="none"></path>
@@ -90,7 +135,7 @@ export default function ProjectCard() {
               </svg>
               Code
             </span>
-          </button>
+          </a>
         </div>
 
         {/* whatever you already show in the middle of the card */}
