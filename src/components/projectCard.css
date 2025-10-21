@@ -58,7 +58,7 @@
 }
 
 .card .info .title {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 600;
 }
 
@@ -113,8 +113,8 @@
 .cssbuttons-io {
   position: relative;
   font-family: inherit;
-  top: 12%;
   font-weight: 500;
+  top: 4%;
   font-size: 18px;
   letter-spacing: 0.05em;
   border-radius: 0.8em;
@@ -167,14 +167,79 @@
   transform: scale(0.95);
 }
 
-.stack .ul {
-  display: flex;
-  flex-direction: column;
+.dashed-line {
+  align-items: center;
+  color: #333;
+  border: 1px dashed #333;
+}
+
+.stack-title {
+  font-size: 1.5rem;
+}
+
+.stack {
+  display: grid;
+  grid-template-columns: repeat(2, 0.5fr);
+  grid-template-rows: repeat(3, 0.5fr);
+  gap: 8px;
   justify-content: center;
   align-items: center;
 }
-.stack .li {
-  gap: 200px;
+
+.stack-item1 {
+  grid-row-start: 1;
+  transition: 300ms ease;
+  transform: scale(1);
+}
+.stack-item1:hover {
+  transition: 300ms ease;
+  transform: scale(1.2);
+  font-weight: 500;
+  color: #8e2de2;
+}
+.stack-item2 {
+  grid-row-start: 1;
+  transition: 300ms ease;
+  transform: scale(1);
+}
+.stack-item2:hover {
+  transition: 300ms ease;
+  transform: scale(1.2);
+  font-weight: 500;
+  color: #8e2de2;
+}
+.stack-item3 {
+  grid-row-start: 2;
+  transition: 300ms ease;
+  transform: scale(1);
+}
+.stack-item3:hover {
+  transition: 300ms ease;
+  transform: scale(1.2);
+  font-weight: 500;
+  color: #8e2de2;
+}
+.stack-item4 {
+  grid-row-start: 2;
+  transition: 300ms ease;
+  transform: scale(1);
+}
+.stack-item4:hover {
+  transition: 300ms ease;
+  transform: scale(1.2);
+  font-weight: 500;
+  color: #8e2de2;
+}
+.stack-item5 {
+  grid-row-start: 3;
+  transition: 300ms ease;
+  transform: scale(1);
+}
+.stack-item5:hover {
+  transition: 300ms ease;
+  transform: scale(1.2);
+  font-weight: 500;
+  color: #8e2de2;
 }
 
 @media (max-width: 1280px) {

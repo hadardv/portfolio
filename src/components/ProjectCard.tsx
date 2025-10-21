@@ -25,14 +25,14 @@ export default function ProjectCard() {
             their food inventory, manage shopping lists, and scan items using
             NFC technology.
           </p>
+          <div className="dashed-line" />
+          <h1 className="stack-title">Tech Stack</h1>
           <div className="stack">
-            <ul>
-              <li>React Native</li>
-              <li>Springboot</li>
-              <li>MongoDB</li>
-              <li>Docker</li>
-              <li>NFC</li>
-            </ul>
+            <p className="stack-item1">React Native</p>
+            <p className="stack-item2">Springboot</p>
+            <p className="stack-item3">MongoDB</p>
+            <p className="stack-item4">Docker</p>
+            <p className="stack-item5">NFC</p>
           </div>
           <a
             href="https://github.com/hadardv/PantryPal"
@@ -69,11 +69,11 @@ export default function ProjectCard() {
           </p>
           <div className="stack">
             <ul>
-              <li>Kotlin</li>
-              <li>Firebase</li>
-              <li>Javascript</li>
-              <li>MUI</li>
-              <li>Express</li>
+              <p>Kotlin</p>
+              <p>Firebase</p>
+              <p>Javascript</p>
+              <p>MUI</p>
+              <p>Express</p>
             </ul>
           </div>
           <a
@@ -111,11 +111,11 @@ export default function ProjectCard() {
           </p>
           <div className="stack">
             <ul>
-              <li>Postgresql</li>
-              <li>React</li>
-              <li>Javascript</li>
-              <li>MUI</li>
-              <li>Express</li>
+              <p>Postgresql</p>
+              <p>React</p>
+              <p>Javascript</p>
+              <p>MUI</p>
+              <p>Express</p>
             </ul>
           </div>
           <a
