@@ -140,6 +140,21 @@ export default function Hero() {
             </g>
           </g>
         </svg>
+        <div className="fullscreen-container">
+          <div className="radio-group-container">
+            <label className="radio-label">
+              <input
+                type="radio"
+                name="option"
+                checked={true}
+                disabled={true}
+                className="radio-input"
+              />
+              <span className="radio-custom"></span>
+              <span className="radio-text">Slide to find more</span>
+            </label>
+          </div>
+        </div>
       </div>
     </section>
   );
