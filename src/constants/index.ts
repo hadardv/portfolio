@@ -12,8 +12,8 @@ import {
   figma,
   docker,
   threejs,
-  pantrypal,
   habitpals,
+  pantrypal,
   carcatalog,
 } from "../assets/index";
 

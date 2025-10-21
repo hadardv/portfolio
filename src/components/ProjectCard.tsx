@@ -67,14 +67,15 @@ export default function ProjectCard() {
             Habit Pals is a social habit-tracking app that helps users build
             better habits, track progress, and stay accountable with friends.
           </p>
+
+          <div className="dashed-line" />
+          <h1 className="stack-title">Tech Stack</h1>
           <div className="stack">
-            <ul>
-              <p>Kotlin</p>
-              <p>Firebase</p>
-              <p>Javascript</p>
-              <p>MUI</p>
-              <p>Express</p>
-            </ul>
+            <p className="stack-item1">Kotlin</p>
+            <p className="stack-item2">Firebase</p>
+            <p className="stack-item3">Javascript</p>
+            <p className="stack-item4">MUI</p>
+            <p className="stack-item5">Express</p>
           </div>
           <a
             href="https://github.com/hadardv/Habit-Pals"
@@ -109,14 +110,15 @@ export default function ProjectCard() {
             with powerful search and filters, plus BI analytics across multiple
             chart types.
           </p>
+
+          <div className="dashed-line" />
+          <h1 className="stack-title">Tech Stack</h1>
           <div className="stack">
-            <ul>
-              <p>Postgresql</p>
-              <p>React</p>
-              <p>Javascript</p>
-              <p>MUI</p>
-              <p>Express</p>
-            </ul>
+            <p className="stack-item1">React</p>
+            <p className="stack-item2">Postgresql</p>
+            <p className="stack-item3">Javascript</p>
+            <p className="stack-item4">MUI</p>
+            <p className="stack-item5">Express</p>
           </div>
           <a
             href="https://github.com/hadardv/carsProj---final"
