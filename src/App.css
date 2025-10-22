@@ -12,8 +12,6 @@
   position: relative;
   min-height: screen;
   z-index: 0;
-  height: auto;
-  /* background-color: #cb9df0; */
   --bg-size: 48px;
   background-image: repeating-conic-gradient(
       from 0deg at 0% 0%,

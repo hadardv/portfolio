@@ -13,7 +13,9 @@ export default function App() {
     <BrowserRouter>
       {/* <GlobalCursorGlow /> */}
       <Navbar />
-      <Hero />
+      <div className="section-two">
+        <Hero />
+      </div>
       <div className="section-one">
         <About />
       </div>

@@ -1,11 +1,9 @@
 import { useEffect, useRef } from "react";
-// import DeskSetupViewer from "../components/DeskSetupViewer";
 import "./hero.css";
 
 export default function Hero() {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  // Auto-size the blue name pill to the text width
   useEffect(() => {
     const svg = svgRef.current;
     if (!svg) return;
@@ -13,7 +11,7 @@ export default function Hero() {
     const bg = svg.querySelector<SVGRectElement>("#name-bg");
     if (!text || !bg) return;
 
-    const padX = 12; // left/right padding for the pill
+    const padX = 12;
     const box = text.getBBox();
     bg.setAttribute("width", String(box.width + padX * 2));
     text.setAttribute(
@@ -23,30 +21,22 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="container ">
-      {/* Background 3D scene */}
-      {/* <div className="absolute inset-0 z-0 overflow-hidden opacity-80">
-        <DeskSetupViewer
-          src="/models/space_boi.glb"
-          fit="cover"
-          interactive
-          autoRotate
-          style={{ position: "absolute", inset: 0, zIndex: 0, opacity: 1 }}
-        />
-      </div> */}
-
-      <div className="content relative z-20 sticky top-16 md:top-24 px-6 sm:px-10 md:px-16">
+    <section id="hero" className="hero">
+      <div className="hero__inner">
         <svg
+          className="name"
           ref={svgRef}
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 614 390"
-          width="614"
-          height="456"
+          viewBox="-40 0 654 390"
+          role="img"
+          aria-labelledby="heroTitle"
+          preserveAspectRatio="xMidYMid meet"
         >
+          <title id="heroTitle">Frontend, Backend, Fullstack</title>
           <g id="Frame">
-            <g id="headline">
+            <g id="headline" transform="translate(0,-26)">
               <text
-                x="60"
+                x="20"
                 y="120"
                 fontFamily="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
                 fontSize="92"
@@ -55,13 +45,13 @@ export default function Hero() {
                 letterSpacing="1"
                 id="text"
               >
-                <tspan x="60" dy="0">
+                <tspan x="48" dy="0">
                   Frontend,
                 </tspan>
-                <tspan x="60" dy="108">
+                <tspan x="48" dy="108">
                   Backend,
                 </tspan>
-                <tspan x="60" dy="108">
+                <tspan x="48" dy="108">
                   Fullstack.
                 </tspan>
               </text>
@@ -115,7 +105,6 @@ export default function Hero() {
                 fill="#2563EB"
                 d="M453.383 343L448 317L471 331L459.745 333.5L453.383 343Z"
               />
-
               <rect
                 id="name-bg"
                 x="470"
@@ -126,10 +115,9 @@ export default function Hero() {
                 height="30"
                 fill="#2563EB"
               />
-
               <text
                 id="name-text"
-                x="482"
+                x="472"
                 y="364"
                 fontFamily="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
                 fontSize="16"
@@ -140,20 +128,20 @@ export default function Hero() {
             </g>
           </g>
         </svg>
-        <div className="fullscreen-container">
-          <div className="radio-group-container">
-            <label className="radio-label">
-              <input
-                type="radio"
-                name="option"
-                checked={true}
-                disabled={true}
-                className="radio-input"
-              />
-              <span className="radio-custom"></span>
-              <span className="radio-text">Slide to find more</span>
-            </label>
-          </div>
+
+        {/* CTA */}
+        <div className="cta">
+          <label className="radio-label">
+            <input
+              type="radio"
+              name="option"
+              checked
+              disabled
+              className="radio-input"
+            />
+            <span className="radio-custom"></span>
+            <span className="radio-text">Slide to find more</span>
+          </label>
         </div>
       </div>
     </section>

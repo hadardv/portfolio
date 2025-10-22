@@ -1,8 +1,11 @@
-.container {
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-  min-width: 100vw;
+:root {
+  --nav-h: 64px;
+}
+
+.hero {
+  min-height: calc(100svh - var(--nav-h));
+  height: calc(100svh - var(--nav-h));
+
   --bg-size: 48px;
   background-image: repeating-conic-gradient(
       from 0deg at 0% 0%,
@@ -12,146 +15,97 @@
     repeating-conic-gradient(from 0deg at 100% 100%, #8ca6db 0deg, #8e1d9e 5deg);
   background-size: var(--bg-size) var(--bg-size);
   background-blend-mode: screen;
-  display: grid;
-  place-items: center;
-}
 
-.content svg {
-  display: block;
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-  margin-left: 9rem;
-}
-
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes hero-fade {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-fade {
-    animation: none;
-  }
-  .gradient-shift {
-    animation: none;
-  }
-}
-
-.content {
-  width: min(1100px, 92vw);
-  margin-inline: auto;
-}
-
-.content svg {
-  display: block;
-  width: 70%;
-  height: auto;
-}
-
-.hero-fade {
-  animation: hero-fade 0.9s ease forwards;
-}
-
-.gradient-shift {
-  font-weight: 800;
-  font-size: 900;
-  margin: 0.1rem 0;
-  background-image: linear-gradient(90deg, #9a031e, #e63946, #f1faee);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-size: 200% 200%;
-  animation: gradientShift 6s ease infinite;
-}
-
-#cursor,
-#box,
-#text {
-  cursor: pointer;
-}
-
-#cursor {
-  overflow: visible;
-  transform: translate3d(300px, 0, 0) scale(1);
-  transform-origin: center center;
-  transform-box: fill-box;
-  animation: cursor 5s ease infinite alternate;
-}
-
-.fullscreen-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100px;
-  max-height: 100%;
-  min-height: 30%;
-
-  padding: 20px 0;
-  color: #333;
+  overflow: hidden;
   box-sizing: border-box;
+  padding-inline: clamp(12px, 4vw, 32px);
+  padding-top: clamp(12px, 2vh, 28px);
+  padding-bottom: clamp(12px, 2vh, 28px);
+  padding-left: max(clamp(12px, 4vw, 32px), env(safe-area-inset-left, 0px));
+  padding-right: max(clamp(12px, 4vw, 32px), env(safe-area-inset-right, 0px));
 }
 
-.radio-group-container {
-  margin-top: 20%;
-  margin-right: 40px;
-  background-color: rgba(226, 227, 238, 0.795);
-  padding: 0px 35px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.055);
-  width: 90%;
-  max-width: 300px;
-  transition: all 0.3s ease;
+/* Grid: content fills space, CTA sits at bottom */
+.hero__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  row-gap: clamp(8px, 3vh, 20px);
+  align-items: center;
+  justify-items: center;
+  overflow: visible;
+}
+/* hero.css */
+.name {
+  width: min(680px, 100%);
+  max-height: clamp(280px, 50vh, 520px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  overflow: visible; /* ← prevents right-edge clipping */
+}
+
+/* ===== CTA pill ===== */
+.cta {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* pulled up a bit from the edge, safe on iPhone */
+  margin-bottom: clamp(20px, 10vh, 86px); /* pull CTA up a bit */
 }
 
 .radio-label {
-  display: flex;
-  color: #333;
+  display: grid;
+  grid-template-columns: 24px 1fr 24px; /* icon | centered text | ghost spacer */
   align-items: center;
-  margin: 30px 0;
-  cursor: pointer;
-  position: relative;
-  user-select: none;
+  column-gap: 12px;
+
+  background-color: rgba(226, 227, 238, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  padding: 10px 20px;
+  width: min(320px, 80vw);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+.radio-label::after {
+  content: "";
+  width: 24px;
+  height: 24px;
 }
 
 .radio-input {
   display: none;
 }
-
 .radio-custom {
   width: 22px;
   height: 22px;
-  background-color: transparent;
   border: 2px solid #5c5e79;
   border-radius: 50%;
-  margin-right: 18px;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   flex-shrink: 0;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+/* restore the cursor animation */
+#cursor {
+  overflow: visible;
+  transform-origin: center center;
+  transform-box: fill-box; /* important for SVG groups */
+  animation: cursor 5s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
+.radio-text {
+  text-align: center;
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: #333;
+}
 .radio-custom::before {
   content: "";
   position: absolute;
@@ -162,7 +116,6 @@
   transform: scale(0);
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 .radio-custom::after {
   content: "";
   position: absolute;
@@ -175,23 +128,14 @@
   transform: scale(0.8);
   transition: all 0.4s ease;
 }
-
-.radio-text {
-  font-size: 1.1rem;
-  margin-left: 10px;
-  color: #333;
-}
-
 .radio-input:checked + .radio-custom {
   border-color: #ff00dd;
   transform: scale(0.9);
 }
-
 .radio-input:checked + .radio-custom::before {
   transform: scale(1);
   background-color: #ff00dd;
 }
-
 .radio-input:checked + .radio-custom::after {
   opacity: 1;
   transform: scale(1.3);
@@ -199,11 +143,33 @@
   box-shadow: 0 0 30px #ff00dd, 0 0 80px rgba(238, 0, 255, 0.2);
 }
 
-.radio-input:checked ~ .radio-text {
-  color: #333;
-  font-weight: 700;
+/* Motion prefs */
+@media (prefers-reduced-motion: reduce) {
+  .radio-label {
+    transition: none !important;
+  }
 }
 
+/* Small phones */
+@media (max-width: 480px) {
+  .name {
+    width: 92vw;
+    max-height: 48vh; /* ensure plenty of breathing room */
+    transform: translateY(-1.5vh); /* micro-nudge upward on small phones */
+  }
+  .radio-label {
+    width: min(320px, 86vw);
+  }
+}
+
+/* Tablets */
+@media (min-width: 481px) and (max-width: 900px) {
+  .name {
+    width: min(620px, 92%);
+  }
+}
+
+/* Animations (kept) */
 @keyframes orbit {
   from {
     transform: rotate(0deg);
@@ -212,22 +178,11 @@
     transform: rotate(360deg);
   }
 }
-
-/* Media Query for Mobile Responsiveness */
-@media (max-width: 400px) {
-  .radio-group-container {
-    padding: 15px 25px;
-  }
-
-  .radio-label {
-    margin: 25px 0;
-  }
-
-  .radio-text {
-    font-size: 1rem;
-  }
+#cursor,
+#box,
+#text {
+  cursor: pointer;
 }
-
 @keyframes cursor {
   0% {
     opacity: 0;
@@ -252,20 +207,5 @@
   100% {
     opacity: 1;
     transform: translate3d(-300px, -50px, 0) scale(1);
-  }
-}
-
-#box {
-  opacity: 0;
-  animation: box 5s ease infinite alternate;
-}
-@keyframes box {
-  0%,
-  60% {
-    opacity: 0;
-  }
-  65%,
-  100% {
-    opacity: 1;
   }
 }
