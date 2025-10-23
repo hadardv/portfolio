@@ -202,7 +202,19 @@
   width: 100%;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 480px) {
+  .timeline__card {
+    width: 100%;
+  }
+  .timeline__spine {
+    left: 20px;
+  }
+  .timeline__dot-wrap {
+    left: -2px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 980px) {
   .timeline__item {
     padding-left: 56px;
   }
@@ -213,3 +225,15 @@
     left: 11px;
   }
 }
+
+/* @media (max-width: 520px) {
+  .timeline__item {
+    padding-left: 56px;
+  }
+  .timeline__spine {
+    left: 20px;
+  }
+  .timeline__dot-wrap {
+    left: 11px;
+  }
+} */

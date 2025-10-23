@@ -3,7 +3,7 @@
 }
 
 .hero {
-  min-height: calc(100svh - var(--nav-h));
+  min-height: calc(108svh - var(--nav-h));
   height: calc(100svh - var(--nav-h));
 
   --bg-size: 48px;
@@ -25,7 +25,6 @@
   padding-right: max(clamp(12px, 4vw, 32px), env(safe-area-inset-right, 0px));
 }
 
-/* Grid: content fills space, CTA sits at bottom */
 .hero__inner {
   max-width: 1100px;
   margin: 0 auto;
@@ -37,28 +36,26 @@
   justify-items: center;
   overflow: visible;
 }
-/* hero.css */
+
 .name {
   width: min(680px, 100%);
   max-height: clamp(280px, 50vh, 520px);
   height: auto;
   display: block;
   margin: 0 auto;
-  overflow: visible; /* ← prevents right-edge clipping */
+  overflow: visible;
 }
 
-/* ===== CTA pill ===== */
 .cta {
   width: 100%;
   display: flex;
   justify-content: center;
-  /* pulled up a bit from the edge, safe on iPhone */
-  margin-bottom: clamp(20px, 10vh, 86px); /* pull CTA up a bit */
+  margin-bottom: clamp(20px, 10vh, 86px);
 }
 
 .radio-label {
   display: grid;
-  grid-template-columns: 24px 1fr 24px; /* icon | centered text | ghost spacer */
+  grid-template-columns: 24px 1fr 24px;
   align-items: center;
   column-gap: 12px;
 
@@ -90,11 +87,10 @@
   flex-shrink: 0;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-/* restore the cursor animation */
 #cursor {
   overflow: visible;
   transform-origin: center center;
-  transform-box: fill-box; /* important for SVG groups */
+  transform-box: fill-box;
   animation: cursor 5s ease-in-out infinite alternate;
   will-change: transform;
 }
@@ -143,33 +139,30 @@
   box-shadow: 0 0 30px #ff00dd, 0 0 80px rgba(238, 0, 255, 0.2);
 }
 
-/* Motion prefs */
 @media (prefers-reduced-motion: reduce) {
   .radio-label {
     transition: none !important;
   }
 }
 
-/* Small phones */
 @media (max-width: 480px) {
   .name {
     width: 92vw;
-    max-height: 48vh; /* ensure plenty of breathing room */
-    transform: translateY(-1.5vh); /* micro-nudge upward on small phones */
+    max-height: 48vh;
+
+    transform: translateY(-1.5vh);
   }
   .radio-label {
     width: min(320px, 86vw);
   }
 }
 
-/* Tablets */
 @media (min-width: 481px) and (max-width: 900px) {
   .name {
     width: min(620px, 92%);
   }
 }
 
-/* Animations (kept) */
 @keyframes orbit {
   from {
     transform: rotate(0deg);
