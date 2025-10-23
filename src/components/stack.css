@@ -1,0 +1,18 @@
+.skills-stack {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  min-height: 100vh;
+  z-index: 0;
+  height: 100%;
+  background-color: #fff6e3;
+}
+
+.left-skills {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -4,7 +4,7 @@
   position: relative;
   z-index: 0;
   height: auto;
-  min-height: screen;
+  min-height: 100vh;
   background-color: #fff6e3;
 }
 

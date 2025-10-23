@@ -6,6 +6,7 @@ import About from "./components/About";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import Stack from "./components/Stack";
 // import GlobalCursorGlow from "./utils/GlobalCursorGlow";
 
 export default function App() {
@@ -22,9 +23,7 @@ export default function App() {
       <div className="section-two">
         <Projects />
       </div>
-      <div className="section-one">
-        <About />
-      </div>
+      <Stack />
       <div className="section-two">
         <Contact />
       </div>

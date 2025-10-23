@@ -1,5 +1,5 @@
 import "./about.css";
-import Timeline from "./Timeline";
+import Timeline from "./ui/Timeline";
 
 export default function About() {
   return (

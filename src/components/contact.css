@@ -169,3 +169,21 @@
 #github {
   fill: #333;
 }
+
+@media (max-width: 480px) {
+  .form-container {
+    width: 90%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 980px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+  .about-sticky {
+    position: static;
+  }
+  .timeline-section {
+    margin-top: 1.5rem;
+  }
+}
