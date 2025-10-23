@@ -29,8 +29,9 @@
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  height: 500px;
-  width: 800px;
+  height: auto;
+  width: min(900px, 92vw);
+  aspect-ratio: 16 / 9;
   border-radius: 10px;
   color: #333;
   cursor: pointer;
@@ -40,7 +41,7 @@
 .card .info {
   position: absolute;
   inset: 0 auto 0 0;
-  width: 60%;
+  width: clamp(380px, 60%, 560px);
   height: 100%;
   background: rgba(255, 250, 237, 0.95);
   color: #1f2937;
@@ -266,11 +267,53 @@
   }
   .cards .card {
     width: 90vw;
+    aspect-ratio: auto;
+    height: auto;
+    border-radius: 12px;
   }
   .cards .card:hover,
   .cards:hover > .card:not(:hover) {
     transform: none;
     filter: none;
+  }
+  /* Make the info panel full-width and always visible */
+  .card .info {
+    position: static;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    pointer-events: auto;
+    box-shadow: none;
+    border-right: 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.15);
+    background: rgba(255, 250, 237, 0.96);
+    padding: 16px 18px;
+    gap: 10px;
+  }
+
+  .card .info .title {
+    font-size: clamp(20px, 5vw, 26px);
+    line-height: 1.15;
+  }
+  .card .info .body {
+    font-size: clamp(14px, 3.6vw, 16px);
+    line-height: 1.5;
+  }
+  .cards .content .tip {
+    color: transparent;
+    position: relative;
+  }
+  .cards .content .tip::after {
+    content: "Tap me";
+    position: absolute;
+    inset: 0;
+    color: #fff;
+  }
+  .cssbuttons-io span {
+    padding: 0.7em 1em;
+  }
+  .cssbuttons-io {
+    font-size: 16px;
   }
 }
 
@@ -283,7 +326,34 @@
     border-radius: 8px;
   }
   .cards .card p.tip {
-    font-size: 0.95em;
+    font-size: 0.55em;
+  }
+  .cards .card p.second-text {
+    font-size: 0.5em;
+  }
+  .cards .content .tip {
+    color: transparent;
+    position: relative;
+  }
+  .cards .content .tip::after {
+    content: "Tap me";
+    position: absolute;
+    inset: 0;
+    color: #fff;
+  }
+  .stack-title {
+    font-size: 1.25rem;
+  }
+  .stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(28px, auto);
+    gap: 6px;
+    justify-items: start;
+  }
+
+  .cards .card p.tip {
+    font-size: 0.55em;
   }
   .cards .card p.second-text {
     font-size: 0.75em;

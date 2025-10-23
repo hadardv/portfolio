@@ -140,7 +140,6 @@ export default function ProjectCard() {
           </a>
         </div>
 
-        {/* whatever you already show in the middle of the card */}
         <div className="content">
           <p className="tip">Hover Me</p>
         </div>
