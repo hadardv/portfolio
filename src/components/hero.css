@@ -52,6 +52,59 @@
   justify-content: center;
   margin-bottom: clamp(20px, 10vh, 86px);
 }
+#cursor,
+#box,
+#text {
+  cursor: pointer;
+}
+
+#cursor {
+  overflow: visible;
+  transform: translate3d(300px, 0, 0) scale(1);
+  transform-origin: center center;
+  transform-box: fill-box;
+  animation: cursor 5s ease infinite alternate;
+}
+@keyframes cursor {
+  0% {
+    opacity: 0;
+    transform: translate3d(300px, 0, 0) scale(1);
+  }
+  30% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(-200px, -200px, 0) scale(1);
+  }
+  65% {
+    opacity: 1;
+    transform: translate3d(-200px, -200px, 0) scale(0.95);
+  }
+  70% {
+    opacity: 1;
+    transform: translate3d(-200px, -200px, 0) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(-300px, -50px, 0) scale(1);
+  }
+}
+#box {
+  opacity: 0;
+  animation: box 5s ease infinite alternate;
+}
+@keyframes box {
+  0%,
+  60% {
+    opacity: 0;
+  }
+  65%,
+  100% {
+    opacity: 1;
+  }
+}
 
 .radio-label {
   display: grid;
@@ -86,13 +139,6 @@
   position: relative;
   flex-shrink: 0;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-#cursor {
-  overflow: visible;
-  transform-origin: center center;
-  transform-box: fill-box;
-  animation: cursor 5s ease-in-out infinite alternate;
-  will-change: transform;
 }
 
 .radio-text {
@@ -143,6 +189,10 @@
   .radio-label {
     transition: none !important;
   }
+  #box {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 @media (max-width: 480px) {
@@ -169,36 +219,5 @@
   }
   to {
     transform: rotate(360deg);
-  }
-}
-#cursor,
-#box,
-#text {
-  cursor: pointer;
-}
-@keyframes cursor {
-  0% {
-    opacity: 0;
-    transform: translate3d(300px, 0, 0) scale(1);
-  }
-  30% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  60% {
-    opacity: 1;
-    transform: translate3d(-200px, -200px, 0) scale(1);
-  }
-  65% {
-    opacity: 1;
-    transform: translate3d(-200px, -200px, 0) scale(0.95);
-  }
-  70% {
-    opacity: 1;
-    transform: translate3d(-200px, -200px, 0) scale(1);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(-300px, -50px, 0) scale(1);
   }
 }
