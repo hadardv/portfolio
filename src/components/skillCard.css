@@ -1,0 +1,12 @@
+.content {
+  justify-content: space-between;
+  width: 50%;
+}
+
+.field-title {
+  margin-top: 10px;
+}
+
+.arrow:hover {
+  transform: scale(1.1);
+}
