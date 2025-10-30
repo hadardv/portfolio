@@ -1,64 +1,134 @@
+// Stack.tsx
 import React from "react";
-// import DeskSetupViewer from "./DeskSetupViewer";
+import { AnimatePresence, motion } from "framer-motion";
 import "./stack.css";
 import StackOptions from "./ui/StackOptions";
 import SkillCard from "./SkillCard";
 
 export type fieldType = "frontend" | "backend" | "other";
+const FIELDS: fieldType[] = ["frontend", "backend", "other"];
 
 export default function Stack() {
   const [fieldSelected, setFieldSelected] =
     React.useState<fieldType>("frontend");
-  const handleFieldSelect = (fieldSelected: fieldType) => {
-    setFieldSelected(fieldSelected);
+
+  // +1 = next, -1 = prev
+  const [dir, setDir] = React.useState<1 | -1>(1);
+
+  const idx = FIELDS.indexOf(fieldSelected);
+  const goNext = () => {
+    setDir(1);
+    setFieldSelected(FIELDS[(idx + 1) % FIELDS.length]);
   };
+  const goPrev = () => {
+    setDir(-1);
+    setFieldSelected(FIELDS[(idx - 1 + FIELDS.length) % FIELDS.length]);
+  };
+
+  const lastSwitch = React.useRef(0);
+  const trigger = (d: "next" | "prev") => {
+    const now = Date.now();
+    if (now - lastSwitch.current < 350) return;
+    lastSwitch.current = now;
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    d === "next" ? goNext() : goPrev();
+  };
+
+  // swipe
+  const startX = React.useRef<number | null>(null);
+  const onTouchStart: React.TouchEventHandler<HTMLDivElement> = (e) => {
+    startX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd: React.TouchEventHandler<HTMLDivElement> = (e) => {
+    if (startX.current == null) return;
+    const dx = e.changedTouches[0].clientX - startX.current;
+    startX.current = null;
+    if (Math.abs(dx) < 50) return;
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    dx < 0 ? goNext() : goPrev();
+  };
+
   return (
     <div id="stack" className="skills-stack">
       <div className="left-skills">
         <div className="field-options">
           <StackOptions
-            onFieldSelect={handleFieldSelect}
+            onFieldSelect={(f) => {
+              // set direction based on where the target is relative to current
+              const targetIdx = FIELDS.indexOf(f);
+              const d = targetIdx > idx ? 1 : -1;
+              setDir(d as 1 | -1);
+              setFieldSelected(f);
+            }}
             currentField={fieldSelected}
           />
         </div>
-        <div className="dynamic-cards">
-          {fieldSelected === "frontend" && (
-            <SkillCard
-              field={"frontend"}
-              skills={["React", "Typescript", "CSS", "HTML"]}
-            />
-          )}
-          {fieldSelected === "backend" && (
-            <SkillCard
-              field={"backend"}
-              skills={["Node.js", "Express", "MongoDB", "Python"]}
-            />
-          )}
-          {fieldSelected === "other" && (
-            <SkillCard
-              field={"other"}
-              skills={["Git", "Docker", "CI/CD", "Testing"]}
-            />
-          )}
+
+        <div
+          className="dynamic-cards"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={fieldSelected}
+              initial={{ opacity: 0.6, x: 10 * dir }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0.6, x: -10 * dir }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+            >
+              {fieldSelected === "frontend" && (
+                <SkillCard
+                  field="frontend"
+                  skills={[
+                    "React",
+                    "Typescript",
+                    "CSS",
+                    "HTML",
+                    "React Native",
+                  ]}
+                />
+              )}
+              {fieldSelected === "backend" && (
+                <SkillCard
+                  field="backend"
+                  skills={[
+                    "Node.js",
+                    "Express",
+                    "MSSQL",
+                    "Python",
+                    "Java",
+                    "Springboot",
+                    "PostgreSQL",
+                    "Kotlin",
+                    "Firebase",
+                  ]}
+                />
+              )}
+              {fieldSelected === "other" && (
+                <SkillCard
+                  field="other"
+                  skills={["Git", "Docker", "Testing"]}
+                />
+              )}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Edge hot-zones over the card */}
+          <div
+            className="edge edge-left"
+            onMouseEnter={() => trigger("prev")}
+            onClick={() => trigger("prev")}
+            aria-label="Previous"
+          />
+          <div
+            className="edge edge-right"
+            onMouseEnter={() => trigger("next")}
+            onClick={() => trigger("next")}
+            aria-label="Next"
+          />
         </div>
       </div>
-      {/* <DeskSetupViewer
-        src="/models/setup-draco.glb"
-        fit="contain"
-        interactive={true}
-        autoRotate
-        style={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          width: "55%",
-          height: "100%",
-          zIndex: 0,
-          marginRight: "20px",
-          marginTop: "20px",
-        }}
-      /> */}
     </div>
   );
 }

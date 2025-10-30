@@ -1,0 +1,7 @@
+.stack-tabs {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.stack-tabs::-webkit-scrollbar {
+  display: none;
+}

@@ -8,7 +8,18 @@ export type SkillCardProps = {
 export default function SkillCard(skillsProps: SkillCardProps) {
   return (
     <>
-      <div className="w-[800px] h-[500px] relative border border-solid border-white/40 rounded-2xl overflow-hidden">
+      <div
+        className="
+    relative
+    w-[min(92vw,520px)]          /* mobile */
+    sm:w-[min(90vw,640px)]       /* small tablets */
+    md:w-[min(86vw,720px)]       /* tablets */
+    lg:w-[800px]                 /* desktop */
+    h-[clamp(360px,70vw,520px)] 
+    border border-solid border-white/40
+    rounded-2xl overflow-hidden
+  "
+      >
         <div className="w-full h-full p-1 absolute bg-purple-400">
           <div className="w-full h-full rounded-xl rounded-tr-[100px] rounded-br-[40px] bg-[#222]"></div>
         </div>
@@ -22,15 +33,18 @@ export default function SkillCard(skillsProps: SkillCardProps) {
 
         <div className="w-full h-full p-2 flex justify-between absolute inset-0">
           <div className="content w-3/5 p-2 pt-3 pb-1.5 flex flex-col rounded-xl backdrop-blur-lg bg-gray-50/10 text-gray-200 font-medium font-mono">
-            <span className="field-title text-xl font-medium text-center">
+            <span className="field-title text-lg md:text-xl font-medium text-center">
               {skillsProps.field}
             </span>
-            <span className="skill-list text-xs text-gray-400 text-center mb-4">
-              {skillsProps.skills &&
-                skillsProps.skills.map((s) => {
-                  return `${s} `;
-                })}
-            </span>
+            <div className="text-xs md:text-sm text-gray-400 text-center mb-4">
+              <div className="skill-list mb-4">
+                {skillsProps.skills?.map((s) => (
+                  <span key={s} className="skill-item">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
             <div className="w-full mt-auto flex items-center justify-center">
               <span className="text-xs text-gray-400">2025</span>
             </div>

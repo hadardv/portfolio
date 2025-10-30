@@ -19,9 +19,83 @@
 
 .dynamic-cards {
   position: relative;
-  width: 50%;
+  width: min(92vw, 880px);
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 20%;
+  margin-top: 2rem;
+  touch-action: pan-y;
+}
+
+.card-stage {
+  position: relative;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.card-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 20;
+  cursor: pointer;
+  background: transparent;
+}
+
+.edge-left {
+  left: 0;
+}
+.edge-right {
+  right: 0;
+}
+
+.dynamic-cards.animating .edge {
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .skills-stack {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .left-skills {
+    padding-top: 3.5rem;
+  }
+
+  .dynamic-cards {
+    width: min(94vw, 720px);
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .edge {
+    width: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  .left-skills {
+    padding-top: 2rem;
+  }
+
+  .dynamic-cards {
+    width: 94vw;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .edge {
+    width: 32px;
+  }
 }
