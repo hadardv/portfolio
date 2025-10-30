@@ -52,7 +52,7 @@ export default function Hero() {
                   Backend,
                 </tspan>
                 <tspan x="48" dy="108">
-                  Fullstack.
+                  Web Dev.
                 </tspan>
               </text>
             </g>
