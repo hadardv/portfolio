@@ -28,12 +28,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50  ${
-        scrolled ? "bg-primary/20 top-8" : "bg-primary/20"
-      } backdrop-blur`}
-      style={{
-        WebkitBackdropFilter: "blur(12px)",
-      }}
+      className={`fixed w-full z-50 backdrop-blur
+    ${scrolled ? "top-8 sm:top-0" : "top-0"}`}
+      style={{ WebkitBackdropFilter: "blur(12px)" }}
     >
       <div className="w-full h-16 flex items-center justify-between !px-4 sm:!px-6 lg:!px-8">
         <Link

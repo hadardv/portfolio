@@ -1,4 +1,3 @@
-// Stack.tsx
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import "./stack.css";
@@ -34,7 +33,6 @@ export default function Stack() {
     d === "next" ? goNext() : goPrev();
   };
 
-  // swipe
   const startX = React.useRef<number | null>(null);
   const onTouchStart: React.TouchEventHandler<HTMLDivElement> = (e) => {
     startX.current = e.touches[0].clientX;
