@@ -12,21 +12,22 @@ import Stack from "./components/Stack";
 export default function App() {
   return (
     <BrowserRouter>
-      {/* <GlobalCursorGlow /> */}
       <Navbar />
-      <div className="section-two">
-        <Hero />
-      </div>
-      <div className="section-one">
-        <About />
-      </div>
-      <div className="section-two">
-        <Projects />
-      </div>
-      <Stack />
-      <div className="section-two">
-        <Contact />
-      </div>
+      <main className="pt-[calc(64px+env(safe-area-inset-top))]">
+        <div className="section-two">
+          <Hero />
+        </div>
+        <div className="section-one">
+          <About />
+        </div>
+        <div className="section-two">
+          <Projects />
+        </div>
+        <Stack />
+        <div className="section-two">
+          <Contact />
+        </div>
+      </main>
     </BrowserRouter>
   );
 }

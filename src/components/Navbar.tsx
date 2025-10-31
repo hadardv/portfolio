@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { navLinks } from "../constants";
 import menu from "../assets/menu.svg";
-import close from "../assets/close.svg";
+import close from "../assets/close.png";
 
 export default function Navbar() {
   const [active, setActive] = useState("");
@@ -14,7 +14,7 @@ export default function Navbar() {
     const el = document.getElementById(id);
     if (!el) return;
     const navH = document.querySelector("nav")?.offsetHeight ?? 72;
-    const y = el.getBoundingClientRect().top + window.scrollY - navH + 60;
+    const y = el.getBoundingClientRect().top + window.scrollY - navH;
     window.scrollTo({ top: y, behavior: "smooth" });
     setActive(id);
     setToggle(false);
@@ -22,15 +22,18 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 100);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <nav
-      className={`fixed top-0 inset-x-0 z-20 ${
-        scrolled ? "bg-primary/10" : "bg-white/15"
+      className={`fixed top-0 w-full z-50  ${
+        scrolled ? "bg-primary/20 top-8" : "bg-primary/20"
       } backdrop-blur`}
+      style={{
+        WebkitBackdropFilter: "blur(12px)",
+      }}
     >
       <div className="w-full h-16 flex items-center justify-between !px-4 sm:!px-6 lg:!px-8">
         <Link
@@ -40,28 +43,19 @@ export default function Navbar() {
             window.scrollTo(0, 0);
           }}
         >
-          <p
-            className={`${
-              scrolled ? "text-black" : "text-white"
-            } text-[18px] font-bold`}
-          >
+          <p className={`text-[#5a189a] text-[18px] font-bold`}>
             Hadar{" "}
             <span className="hidden sm:inline">| Full Stack Developer</span>
           </p>
         </Link>
 
-        <ul
-          className={`
-          hidden sm:flex items-center gap-10`}
-        >
+        <ul className="hidden sm:flex items-center gap-10">
           {navLinks.map((nav) => (
             <li
               key={nav.id}
-              className={`${
-                scrolled ? "text-black" : "text-white"
-              } text-[18px] font-medium cursor-pointer ${
-                active === nav.id ? "text-black" : "text-black/80"
-              } hover:text-white`}
+              className={`text-[#5a189a] text-[18px] font-medium cursor-pointer ${
+                active === nav.id ? "text-[#5a189a]" : "text-[#5a189a]/80"
+              } hover:text-[#5a189a]`}
             >
               <a href={`#${nav.id}`} onClick={(e) => go(nav.id, e)}>
                 {nav.title}
@@ -71,14 +65,14 @@ export default function Navbar() {
         </ul>
 
         <button
-          className="sm:hidden p-2"
+          className="sm:hidden p-2 "
           aria-label="Toggle menu"
           onClick={() => setToggle((t) => !t)}
         >
           <img
             src={toggle ? close : menu}
             alt="menu"
-            className="w-[28px] h-[28px]"
+            className="w-[28px] h-[28px] "
           />
         </button>
       </div>
@@ -86,21 +80,22 @@ export default function Navbar() {
       <div
         className={`${
           toggle ? "flex" : "hidden"
-        } sm:hidden p-6 black-gradient absolute top-16 right-4 min-w-[180px] z-30 rounded-xl`}
+        } sm:hidden flex-col gap-3 p-6 absolute top-16 right-10 min-w-[180px] z-30 rounded-xl bg-white/60 backdrop-blur-md shadow-lg`}
       >
-        <ul className="flex flex-col gap-4 ">
+        <ul className="flex flex-col gap-3 w-full">
           {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`text-[16px] font-medium ${
-                active === nav.title ? "text-white" : "text-white/80"
-              }`}
-              onClick={() => {
-                setToggle(false);
-                setActive(nav.title);
-              }}
-            >
-              <a href={`#${nav.id}`} onClick={(e) => go(nav.id, e)}>
+            <li key={nav.id} onClick={() => setToggle(false)}>
+              <a
+                href={`#${nav.id}`}
+                onClick={(e) => go(nav.id, e)}
+                className={`block w-full text-center py-2 px-3 rounded-lg text-[#5a189a] font-medium
+                      hover:bg-white hover:shadow-sm transition
+                      ${
+                        active === nav.id
+                          ? "bg-white text-[#4a148c] font-semibold"
+                          : "bg-white/70"
+                      }`}
+              >
                 {nav.title}
               </a>
             </li>

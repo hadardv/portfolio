@@ -9,28 +9,6 @@ html {
   --mx: -999px;
   --my: -999px;
 }
-.snap-section {
-  scroll-margin-top: var(--nav-h);
-}
-
-.snap-container {
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-.snap-section {
-  height: 100vh;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-@media (max-width: 640px) {
-  .snap-container {
-    scroll-snap-type: none;
-  }
-}
 
 * {
   margin: 0;

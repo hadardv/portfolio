@@ -54,7 +54,6 @@ export default function Stack() {
         <div className="field-options">
           <StackOptions
             onFieldSelect={(f) => {
-              // set direction based on where the target is relative to current
               const targetIdx = FIELDS.indexOf(f);
               const d = targetIdx > idx ? 1 : -1;
               setDir(d as 1 | -1);
@@ -86,6 +85,10 @@ export default function Stack() {
                     "CSS",
                     "HTML",
                     "React Native",
+                    "MUI",
+                    "Tailwind",
+                    "Three.js",
+                    "React Query",
                   ]}
                 />
               )}
@@ -102,19 +105,28 @@ export default function Stack() {
                     "PostgreSQL",
                     "Kotlin",
                     "Firebase",
+                    "Rest APIs",
                   ]}
                 />
               )}
               {fieldSelected === "other" && (
                 <SkillCard
                   field="other"
-                  skills={["Git", "Docker", "Testing"]}
+                  skills={[
+                    "Git",
+                    "Docker",
+                    "TypeORM",
+                    "Figma",
+                    "Agile",
+                    "AWS S3",
+                    "Vite",
+                    "Postman",
+                  ]}
                 />
               )}
             </motion.div>
           </AnimatePresence>
 
-          {/* Edge hot-zones over the card */}
           <div
             className="edge edge-left"
             onMouseEnter={() => trigger("prev")}

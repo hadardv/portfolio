@@ -3,14 +3,11 @@
 .section-one {
   position: relative;
   z-index: 0;
-  height: auto;
-  min-height: 100vh;
   background-color: #fff6e3;
 }
 
 .section-two {
   position: relative;
-  min-height: screen;
   z-index: 0;
   --bg-size: 48px;
   background-image: repeating-conic-gradient(
@@ -21,10 +18,4 @@
     repeating-conic-gradient(from 0deg at 100% 100%, #8ca6db 0deg, #8e1d9e 5deg);
   background-size: var(--bg-size) var(--bg-size);
   background-blend-mode: screen;
-}
-
-.section-tech {
-  height: 10px;
-  min-height: 350px;
-  background-color: beige;
 }
