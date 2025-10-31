@@ -85,7 +85,6 @@ export default function Stack() {
                     "React Native",
                     "MUI",
                     "Tailwind",
-                    "Three.js",
                     "React Query",
                   ]}
                 />
