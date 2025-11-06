@@ -7,7 +7,8 @@ export default function Contact() {
   return (
     <section id="contact" ref={ref} className="contact w-full min-h-screen">
       <div className="form-container">
-        <form className="form">
+        <form className="form" name="contact" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
           <div className="form-group">
             <label className="name">Name</label>
             <input className="text" id="name" name="name" required={true} />
