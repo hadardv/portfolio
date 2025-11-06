@@ -72,10 +72,8 @@ export default function ProjectCard() {
           <h1 className="stack-title">Tech Stack</h1>
           <div className="stack">
             <p className="stack-item1">Kotlin</p>
-            <p className="stack-item2">Firebase</p>
-            <p className="stack-item3">Javascript</p>
-            <p className="stack-item4">MUI</p>
-            <p className="stack-item5">Express</p>
+            <p className="stack-item2">Firebase Store</p>
+            <p className="stack-item3">Firebase Auth</p>
           </div>
           <a
             href="https://github.com/hadardv/Habit-Pals"
